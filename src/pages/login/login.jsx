@@ -9,11 +9,12 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
     const handleSubmit = () => {
-        signIn(userName,password)
+        signIn(userName, password)
     }
 
-    const [userName, SetUserName] = useState('')
+    const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
+    
     return (
         <>
             <div>
@@ -26,7 +27,7 @@ const Login = () => {
                         placeholder={'Логин'}
                         fullWidth
                         value={userName}
-                        onChange={e => SetUserName(e.target.value)}
+                        onChange={e => setUserName(e.target.value)}
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position='start'>

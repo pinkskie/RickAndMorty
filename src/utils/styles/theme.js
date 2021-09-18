@@ -42,7 +42,8 @@ const theme = createTheme({
                 backgroundColor: '#22A2BD',
                 borderRadius: '12px',
                 color: 'white',
-                textTransform: 'inherit'
+                textTransform: 'inherit',
+                padding: '12px'
             }
         }
     }
