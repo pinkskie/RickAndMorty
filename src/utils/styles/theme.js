@@ -14,7 +14,12 @@ const palette = {
         main: '#5B6975'
     }
 };
-
+const button = {
+    type: 'light',
+    primary: {
+        main: '#22A2BD'
+    }
+}
 const theme = createTheme({
     palette,
     overrides: {
@@ -30,6 +35,14 @@ const theme = createTheme({
         MuiBottomNavigationAction: {
             root: {
                 color: palette.secondary.main
+            }
+        },
+        MuiButton: {
+            containedPrimary: {
+                backgroundColor: '#22A2BD',
+                borderRadius: '12px',
+                color: 'white',
+                textTransform: 'inherit'
             }
         }
     }
