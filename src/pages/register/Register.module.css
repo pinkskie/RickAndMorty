@@ -1,0 +1,18 @@
+.register {
+    padding:16px;
+}
+.register h1 {
+    margin-top: 32px;
+    margin-bottom: 24px;
+}
+.register p {
+    margin-top: 16px;
+}
+.divider {
+    border:1px solid #152A3A;
+    opacity: 50%;
+    margin-top: 32px;
+}
+.login {
+    margin-top: 48px;
+}

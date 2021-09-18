@@ -5,27 +5,28 @@ import { Button } from '@material-ui/core';
 import LoginImage from '../../assets/login.png'
 import { signIn } from "utils/api/login";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
     const handleSubmit = () => {
-        signIn(login,pass)
+        signIn(userName,password)
     }
 
-    const [login, setLogin] = useState('')
-    const [pass, setPass] = useState('')
+    const [userName, SetUserName] = useState('')
+    const [password, setPassword] = useState('')
     return (
         <>
             <div>
                 <img src={LoginImage} alt="image" />
             </div>
                 <div style={{padding: 16}}>
-                    <span style={{marginLeft: 10}}>Логин</span>
+                    <p style={{margin:'8px 12px'}}>Логин</p>
                     <TextField 
                         variant='outlined'
                         placeholder={'Логин'}
                         fullWidth
-                        value={login}
-                        onChange={e => setLogin(e.target.value)}
+                        value={userName}
+                        onChange={e => SetUserName(e.target.value)}
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position='start'>
@@ -34,14 +35,15 @@ const Login = () => {
                             )
                         }}
                         />
-                    <div  style={{marginTop: 10}}>
-                        <span style={{marginLeft: 10}}>Пароль</span>
+                        {/* borderRadius */}
+                    <div style={{marginTop: 10}}> 
+                        <p style={{margin:'8px 12px'}}>Пароль</p>
                         <TextField 
                             variant='outlined'
                             placeholder={'Пароль'}
                             fullWidth
-                            value={pass}
-                            onChange={e => setPass(e.target.value)}
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position='start'>
