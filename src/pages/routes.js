@@ -1,5 +1,5 @@
 import { Switch, Route } from "react-router-dom";
-import { Characters, Episodes, Locations, Settings,Login, Register } from "pages";
+import { Characters, CharactersInfo, Episodes, Locations, Settings,Login, Register } from "pages";
 
 const Routes = () => {
     return (
@@ -10,6 +10,7 @@ const Routes = () => {
             <Route path='/settings' component={Settings}/>
             <Route path='/login' component={Login}/>
             <Route path='/register' component={Register}/>
+            <Route path='/charactersInfo' component={CharactersInfo}/>
         </Switch>
      );
 }
