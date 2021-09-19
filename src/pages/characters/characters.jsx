@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => createStyles({
     margin: 0,
     textTransform: "uppercase",
     fontSize:'10px'
-    
   }
 }));
 

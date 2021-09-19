@@ -1,12 +1,13 @@
 import styles from  './charactersInfo.module.css';
+import { Link } from "react-router-dom";
 
 import { ArrowIcon } from "icons";
 
 
-const charactersInfo = () => {
+const CharactersInfo = () => {
     return (
         <div className={styles.wrapper}> 
-            <Link to='/characters'><ArrowIcon/></Link>
+            <Link to='/'><ArrowIcon/></Link>
             <div className={styles.wrapper__title}>
                 <img src='' alt='alt'/>
                 <h1>Рик Санчез</h1>
@@ -45,4 +46,4 @@ const charactersInfo = () => {
      );
 }
 
-export default charactersInfo;
+export default CharactersInfo;

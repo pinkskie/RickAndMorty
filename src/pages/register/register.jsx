@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { Button } from '@material-ui/core';
 import { signUp } from "utils/api/login";
 
-
 const Register = () => {
 
     const handleSubmit = () => {
@@ -25,37 +24,39 @@ const Register = () => {
         <div className={styles.register}>
             <Link to='/login'><ArrowIcon/></Link>
             <h1>Создать аккаунт</h1>
-            <p>Имя</p>
             <MyInput 
-                label={'Имя'}
+                label='Имя'
+                placeholder='Имя'
                 value={firstName}
                 onChange={e => setFirstName(e.target.value)}
             />
-            <p>Фамилия</p>
             <MyInput 
-                label={'Фамилия'}
+                label='Фамилия'
+                placeholder='Фамилия'
                 value={lastName}
                 onChange={e => setLastName(e.target.value)}
             />
-            <p>Отчество</p>
             <MyInput 
-                label={'Отчество'}
+                label='Отчество'
+                placeholder='Отчество'
                 value={patronymic}
                 onChange={e => setPatronymic(e.target.value)}
             />
             <div className={styles.divider}></div>
             <div className={styles.login}>
-                <p>Логин</p>
                 <MyInput 
-                    label={'Логин'}
+                    label='Логин'
+                    placeholder='Логин'
                     value={userName}
                     onChange={e => setUserName(e.target.value)}
+                    icon={<LoginIcon/>}
                 />
-                <p>Пароль</p>
                 <MyInput 
-                    label={'Пароль'}
+                    label='Пароль'
+                    placeholder='Пароль'
                     value={password}
                     onChange={e => setPassword(e.target.value)}
+                    icon={<PasswordIcon/>}
                 />
             </div>
             <Button 
