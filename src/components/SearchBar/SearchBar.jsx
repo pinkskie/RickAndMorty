@@ -2,12 +2,14 @@ import { InputAdornment, TextField, IconButton } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
-const SearchBar = ({ label, hideFilter = false }) => {
+const SearchBar = ({ label, value, onChange, hideFilter = false }) => {
     return (
         <div style={{ padding: 16 }}>
             <TextField 
                 variant='outlined'
                 placeholder={label}
+                value={value}
+                onChange={onChange}
                 fullWidth
                 InputProps={{
                     startAdornment: (
