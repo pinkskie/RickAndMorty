@@ -1,5 +1,5 @@
+import { InputAdornment, TextField } from "@material-ui/core";
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { InputAdornment, TextField, IconButton } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => createStyles({
     border: {
@@ -7,9 +7,9 @@ const useStyles = makeStyles((theme) => createStyles({
             borderRadius: 12
         }
     }
-  }));
+}));
 
-const MyInput = ({label, icon, value, onChange,placeholder}) => {
+const MyInput = ({ label, icon, value, onChange, placeholder }) => {
     const classes = useStyles();
     return (
         <>
@@ -30,8 +30,7 @@ const MyInput = ({label, icon, value, onChange,placeholder}) => {
                 }}
             />
         </>
-        
-     );
+    );
 }
 
 export default MyInput;

@@ -1,27 +1,25 @@
-// import styles from  './Login.module.css';
-import { InputAdornment, TextField } from "@material-ui/core";
-import { LoginIcon, PasswordIcon } from 'icons';
-import { Button } from '@material-ui/core';
-import LoginImage from '../../assets/login.png'
-import { signIn } from "utils/api/login";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { MyInput } from "components";
 
+import { Button } from '@material-ui/core';
+import { MyInput } from "components";
+import { LoginIcon, PasswordIcon } from 'icons';
+
+import { signIn } from "utils/api/login";
+import LoginImage from '../../assets/login.png'
 
 const Login = () => {
-
-    const handleSubmit = () => {
-        signIn(userName, password)
-    }
-
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
+
+    const handleSubmit = () => {
+        signIn({ userName, password })
+    }
     
     return (
         <>
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <img src={LoginImage} alt="image" />
+                <img src={LoginImage} alt="Logo" />
             </div>
             <div style={{padding: 16}}>
                 <MyInput
@@ -53,7 +51,7 @@ const Login = () => {
                 </p>
             </div>
         </>
-     );
+    );
 }
 
 export default Login;

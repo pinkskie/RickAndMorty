@@ -1,24 +1,23 @@
-import styles from  './Register.module.css';
-import { LoginIcon, PasswordIcon } from 'icons';
-import { MyInput } from "components";
-import { ArrowIcon } from "icons";
 import { useState } from 'react';
 import { Link } from "react-router-dom";
+
 import { Button } from '@material-ui/core';
+import { MyInput } from "components";
+import { LoginIcon, PasswordIcon, ArrowIcon } from 'icons';
+
 import { signUp } from "utils/api/login";
+import styles from  './Register.module.css';
 
 const Register = () => {
-
-    const handleSubmit = () => {
-        signUp(firstName, lastName, patronymic, userName, password)
-    }
-    
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [patronymic, setPatronymic] = useState('')
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
-    
+
+    const handleSubmit = () => {
+        signUp({ firstName, lastName, patronymic, userName, password })
+    }
 
     return (
         <div className={styles.register}>
@@ -70,7 +69,7 @@ const Register = () => {
                     Cоздать
             </Button>
         </div>
-     );
+    );
 }
 
 export default Register;

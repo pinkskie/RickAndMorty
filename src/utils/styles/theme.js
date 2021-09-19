@@ -1,5 +1,4 @@
 import { createTheme } from '@material-ui/core/styles';
-import { PaletteRounded } from '@material-ui/icons';
 
 const palette = {
     type: 'dark',
@@ -14,12 +13,7 @@ const palette = {
         main: '#5B6975'
     }
 };
-const button = {
-    type: 'light',
-    primary: {
-        main: '#22A2BD'
-    }
-}
+
 const theme = createTheme({
     palette,
     overrides: {
