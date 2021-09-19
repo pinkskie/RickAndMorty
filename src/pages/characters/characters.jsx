@@ -26,20 +26,34 @@ const Characters = () => {
 
     useEffect(() => {
         const fetchCharacters = async () => {
-            const characters = await getAllCharacters();
+            const characters = await getAllCharacters(); // асинхронные запросы когда  апишки?
             if(characters?.data?.length) {
-                setData(characters.data)
+                setData(characters.data) 
             }
         }
         fetchCharacters();
     },[]);
-    
+
     const [inputText, setInputText] = useState('')
     const [searchResult, setSearchResult] = useState([])
     
     const handleChange = e => { 
-        setInputText(e.target.value);
+      setInputText(e.target.value);
     } 
+
+    useEffect(() => {
+      fetch(`http://173.249.20.184:7001/api/Characters/GetAll?PageNumber=1&PageSize=200${inputText}`)
+      .then(res => res.json())
+      .then(data => {
+          if(data.fullName !== null){
+              setSearchResult(data.fullName)
+          } else {
+              setSearchResult([])
+              }
+          } 
+      )
+  },[inputText])
+
     return (
         <>
         <SearchBar 
@@ -53,13 +67,13 @@ const Characters = () => {
                   <Link to='/charactersInfo'><Avatar alt={character.fullName} src={character.imageName}/></Link>
                 </ListItemAvatar>
                 <ListItemText
-                  primary={<div className={classes.root}>
-                    <p className={classes.status}>{['Живой', 'Мертый', 'Неизвестно'][character.status]}</p>
-                    {character.fullName}
-                    </div>}
+                  primary={
+                    <div className={classes.root}>
+                      <p className={classes.status}>{['Живой', 'Мертый', 'Неизвестно'][character.status]}</p>
+                      {character.fullName}
+                    </div>
+                    }
                   secondary={`${character.race}, ${['Мужской','Женский'][character.gender]}`}
-                   
-                  
                 />
               </ListItem>
             ))}
