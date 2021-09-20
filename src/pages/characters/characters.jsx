@@ -62,9 +62,10 @@ const Characters = () => {
         value={inputText}
         onChange={handleChange}
       />
+      
       <List>
         {data.map(character => (
-          <ListItem to={`/charactersInfo/${character.id}`} component={Link} key={character.id} alignItems="flex-start" button>
+          <ListItem to={`/charactersInfo/${character.id}`} component={Link} key={character.id} alignItems="center" button>
             <ListItemAvatar>
               <Avatar alt={character.fullName} src={character.imageName} />
             </ListItemAvatar>

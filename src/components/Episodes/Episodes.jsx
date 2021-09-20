@@ -1,8 +1,10 @@
-import { Avatar, Typography, List, ListItem, ListItemAvatar, ListItemText, ListItemSecondaryAction } from "@material-ui/core";
 import { Link, useParams } from "react-router-dom";
+import { Avatar, List, ListItem, ListItemAvatar, ListItemText, ListItemSecondaryAction } from "@material-ui/core";
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+
 import dayjs from 'dayjs'
 import 'dayjs/locale/ru'
+
 import { VectorIcon } from "icons";
 
 
@@ -10,13 +12,19 @@ import { VectorIcon } from "icons";
 const useStyles = makeStyles((theme) => createStyles({
     root: {
       display: "flex",
-      flexDirection: "column"
+      flexDirection: "column",
     },
     status: {
       margin: 0,
       textTransform: "uppercase",
       fontSize:'10px'
-    }
+    },
+    MadiyarGay: {
+        borderRadius: 8,
+        width: theme.spacing(10),
+        height: theme.spacing(10),
+        marginRight: 10
+    } 
   }));
 
 const Episodes = ({data}) => {
@@ -27,9 +35,9 @@ const Episodes = ({data}) => {
         <>
         <List>
         {data?.length && data.map(item => (
-          <ListItem to={`/episodesInfo/${item.id}`} component={Link} key={item.id} alignItems="flex-start" button>
+          <ListItem to={`/episodesInfo/${item.id}`} component={Link} key={item.id} alignItems="center" button>
             <ListItemAvatar>
-            <Avatar alt={item.imageName} src={item.imageName}/>
+            <Avatar variant='square' alt={item.imageName} src={item.imageName} className={classes.MadiyarGay}/>
             </ListItemAvatar>
             <ListItemText
               primary={
@@ -43,7 +51,6 @@ const Episodes = ({data}) => {
             <ListItemSecondaryAction>
               <VectorIcon/>
             </ListItemSecondaryAction>
-            
           </ListItem>
         ))}
       </List>   

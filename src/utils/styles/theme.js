@@ -39,6 +39,14 @@ const theme = createTheme({
                 textTransform: 'inherit',
                 padding: '12px'
             }
+        },
+        MuiAvatar: {
+            root: {
+                width: 72,
+                height: 72,
+                marginRight:16
+            }
+
         }
     }
 })

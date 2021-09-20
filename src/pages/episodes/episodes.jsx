@@ -7,6 +7,7 @@ const Episodes = () => {
     return (
         <>
         <SearchBar label='Найти эпизод' hideFilter />
+        
         </>
      );
 }

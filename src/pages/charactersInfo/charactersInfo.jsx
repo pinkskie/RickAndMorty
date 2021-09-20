@@ -33,47 +33,52 @@ const CharactersInfo = () => {
     },[id])
 
     return (
-        <div className={styles.wrapper}> 
-            <Link to='/'><ArrowIcon/></Link>
-            <div className={styles.wrapper__title}>
-                <Avatar alt={info.imageName} src={info.imageName}  className={classes.large}/>
-                <Typography variant="h4" style={{textAlign: 'center'}}>
-                    {info.fullName}
-                </Typography>
-                {/* <p> раздробить */}
-                <p style={{color: '#43D049', textTransform: 'uppercase', fontSize: 10}}>{['Живой', 'Мертый', 'Неизвестно'][info.status]}</p> 
-            </div>
-            <div className={styles.wrapper__content}>
-                <p>{info.about}</p>
-                <div style={{display: 'flex', gap: 146}}>
-                    {/* div раздробить */}
-                    <div>
-                        <span>Пол</span>
-                        <p>{['Мужской', 'Женский'][info.gender]}</p>
+        <>
+            <div className={styles.wrapper}> 
+                <Link to='/'><ArrowIcon/></Link>
+                <div className={styles.wrapper__title}>
+                    <Avatar alt={info.imageName} src={info.imageName}  className={classes.large}/>
+                    <Typography variant="h4" style={{textAlign: 'center'}}>
+                        {info.fullName}
+                    </Typography>
+                    {/* <p> раздробить */}
+                    <Typography variant="body1" gutterBottom>
+                    {['Живой', 'Мертый', 'Неизвестно'][info.status]}
+                    </Typography>
+                    {/* <p style={{color: '#43D049', textTransform: 'uppercase', fontSize: 10}}>{['Живой', 'Мертый', 'Неизвестно'][info.status]}</p>  */}
+                </div>
+                <div className={styles.wrapper__content}>
+                    <p>{info.about}</p>
+                    <div style={{display: 'flex', gap: 146}}>
+                        {/* div раздробить */}
+                        <div>
+                            <span>Пол</span>
+                            <p>{['Мужской', 'Женский'][info.gender]}</p>
+                        </div>
+                        <div>
+                            <span>Раса</span>
+                            <p>{info.race}</p>
+                        </div>
                     </div>
                     <div>
-                        <span>Раса</span>
-                        <p>{info.race}</p>
+                        <span>Место рождения</span>
+                        <p>{info.placeOfBirth?.name}</p>
+                    </div>
+                    <div>
+                        <span>Местоположение</span>
+                        <p>{info.location?.name}</p>
                     </div>
                 </div>
-                <div>
-                    <span>Место рождения</span>
-                    <p>{info.placeOfBirth?.name}</p>
-                </div>
-                <div>
-                    <span>Местоположение</span>
-                    <p>{info.location?.name}</p>
+                <div className={styles.divider}></div>
+                <div className={styles.episodes}>
+                    <div style={{display: 'flex' , justifyContent: 'space-between', marginTop: 32}}>
+                    <p>Эпизоды</p>
+                    <Link to='#' style={{fontSize:12, color: '#5B6975', textDecoration: 'none'}}>Все эпизоды</Link>
+                    </div>
                 </div>
             </div>
-            <div className={styles.divider}></div>
-            <div className={styles.episodes}>
-                <div style={{display: 'flex' , justifyContent: 'space-between', marginTop: 12}}>
-                <p>Эпизоды</p>
-                <span>Все эпизоды</span>
-                </div>
-                <Episodes data={info.episodes}/>
-            </div>
-        </div>
+            <Episodes data={info.episodes}/>
+        </>
      );
 }
 
