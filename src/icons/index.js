@@ -5,3 +5,4 @@ export { default as SettingsIcon } from './SettingsIcon';
 export { default as LoginIcon } from './LoginIcon';
 export { default as PasswordIcon } from './PasswordIcon';
 export { default as ArrowIcon } from './ArrowIcon';
+export { default as VectorIcon } from './VectorIcon';

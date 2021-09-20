@@ -10,6 +10,8 @@ import { useEffect } from 'react';
 import { getCharaterInfo } from 'utils/api/characters';
 import { useState } from 'react';
 
+import { Episodes } from 'components';
+
 const useStyles = makeStyles((theme) => ({
     large: {
       width: theme.spacing(15),
@@ -35,7 +37,7 @@ const CharactersInfo = () => {
             <Link to='/'><ArrowIcon/></Link>
             <div className={styles.wrapper__title}>
                 <Avatar alt={info.imageName} src={info.imageName}  className={classes.large}/>
-                <Typography variant="h4">
+                <Typography variant="h4" style={{textAlign: 'center'}}>
                     {info.fullName}
                 </Typography>
                 {/* <p> раздробить */}
@@ -65,10 +67,11 @@ const CharactersInfo = () => {
             </div>
             <div className={styles.divider}></div>
             <div className={styles.episodes}>
-                <div style={{}}>
+                <div style={{display: 'flex' , justifyContent: 'space-between', marginTop: 12}}>
                 <p>Эпизоды</p>
-                <span>Все эпизоны</span>
+                <span>Все эпизоды</span>
                 </div>
+                <Episodes data={info.episodes}/>
             </div>
         </div>
      );
