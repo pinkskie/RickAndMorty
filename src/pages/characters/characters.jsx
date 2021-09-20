@@ -5,7 +5,7 @@ import { Avatar, List, ListItem, ListItemAvatar, ListItemText } from "@material-
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 import { SearchBar } from "components"
-import { getAllCharacters } from 'utils/api/characters';
+import { getAllCharacters, getCharactersByFilter } from 'utils/api/characters';
 
 const useStyles = makeStyles((theme) => createStyles({
   root: {
@@ -22,10 +22,10 @@ const useStyles = makeStyles((theme) => createStyles({
 const Characters = () => {
   const [inputText, setInputText] = useState('')
   const [data,setData] = useState([]);
-  const [searchResult, setSearchResult] = useState([]);
 
   const classes = useStyles();
 
+  // получить список всех персонажей при первом рендере
   useEffect(() => {
     const fetchCharacters = async () => {
       const characters = await getAllCharacters(); // асинхронные запросы когда  апишки?
@@ -33,35 +33,38 @@ const Characters = () => {
         setData(characters.data) 
       }
     }
-    fetchCharacters();
-  },[]);
+     // получить всех персонажей если поиск пустой
+    !inputText.length && fetchCharacters();
+  }, [inputText]);
   
   const handleChange = e => { 
     setInputText(e.target.value);
   } 
 
+    // Поиск по имени
   useEffect(() => {
-    fetch(`http://173.249.20.184:7001/api/Characters/GetAll?PageNumber=1&PageSize=200${inputText}`)
-    .then(res => res.json())
-    .then(data => {
-        if(data.fullName !== null){
-            setSearchResult(data.fullName)
-        } else {
-            setSearchResult([])
-            }
-        } 
-    )
-  },[inputText])
+    const fetchCharacters = async () => {
+      const data = await getCharactersByFilter({
+        Name: inputText,
+        Gender: 0,
+        Status: 0
+      });
+      setData(data?.data);
+    }
+    // поиск по имени если введены минимум 3 буквы
+    inputText.length >= 3 && fetchCharacters();
+  }, [inputText]);
 
   return (
     <>
       <SearchBar 
         label='Найти персонажа'
+        value={inputText}
         onChange={handleChange}
       />
       <List>
         {data.map(character => (
-          <ListItem to="/charactersInfo" component={Link} key={character.id} alignItems="flex-start" button>
+          <ListItem to={`/charactersInfo/${character.id}`} component={Link} key={character.id} alignItems="flex-start" button>
             <ListItemAvatar>
               <Avatar alt={character.fullName} src={character.imageName} />
             </ListItemAvatar>

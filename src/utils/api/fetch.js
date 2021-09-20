@@ -15,4 +15,9 @@ const http = async (url, options = { method: "GET" }) => {
     return await res.json();
 }
 
+export const makeParams = params => {
+    const query = Object.entries(params).map(param => param.join('=')).join('&');
+    return '?' + query 
+}
+
 export default http;

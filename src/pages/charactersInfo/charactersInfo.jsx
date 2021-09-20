@@ -1,38 +1,66 @@
 import styles from  './charactersInfo.module.css';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+
+import { Avatar, Typography } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
 
 import { ArrowIcon } from "icons";
+import { useEffect } from 'react';
 
+import { getCharaterInfo } from 'utils/api/characters';
+import { useState } from 'react';
+
+const useStyles = makeStyles((theme) => ({
+    large: {
+      width: theme.spacing(15),
+      height: theme.spacing(15),
+    },
+  }));
 
 const CharactersInfo = () => {
+    const [info , setInfo] = useState('')
+    const { id }= useParams()
+    const classes = useStyles()
+
+    useEffect(() => {
+        const fetchChacterInfo = async () => {
+            const info = await getCharaterInfo(id);
+            setInfo(info.data)
+        }
+        fetchChacterInfo()
+    },[id])
+
     return (
         <div className={styles.wrapper}> 
             <Link to='/'><ArrowIcon/></Link>
             <div className={styles.wrapper__title}>
-                <img src='' alt='alt'/>
-                <h1>Рик Санчез</h1>
-                <p>Живой</p>
+                <Avatar alt={info.imageName} src={info.imageName}  className={classes.large}/>
+                <Typography variant="h4">
+                    {info.fullName}
+                </Typography>
+                {/* <p> раздробить */}
+                <p style={{color: '#43D049', textTransform: 'uppercase', fontSize: 10}}>{['Живой', 'Мертый', 'Неизвестно'][info.status]}</p> 
             </div>
             <div className={styles.wrapper__content}>
-                <p>Главный протагонист мультсериала «Рик и Морти». Безумный ученый, чей алкоголизм, безрассудность
-                и социопатия заставляют беспокоиться семью его дочери.</p>
+                <p>{info.about}</p>
                 <div style={{display: 'flex', gap: 146}}>
+                    {/* div раздробить */}
                     <div>
                         <span>Пол</span>
-                        <p>Мужской</p>
+                        <p>{['Мужской', 'Женский'][info.gender]}</p>
                     </div>
                     <div>
                         <span>Раса</span>
-                        <p>Человек</p>
+                        <p>{info.race}</p>
                     </div>
                 </div>
                 <div>
                     <span>Место рождения</span>
-                    <p>Земля С-137</p>
+                    <p>{info.placeOfBirth?.name}</p>
                 </div>
                 <div>
                     <span>Местоположение</span>
-                    <p>Земля (Измерение подменны)</p>
+                    <p>{info.location?.name}</p>
                 </div>
             </div>
             <div className={styles.divider}></div>
