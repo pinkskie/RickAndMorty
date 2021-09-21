@@ -1,6 +1,7 @@
 // import styles from  './Locations.module.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { SearchBar } from 'components';
 
@@ -12,14 +13,17 @@ import { getAllLocations } from 'utils/api/locations';
 
 const useStyles = makeStyles({
     root: {
-      maxWidth: 343,
+      margin:16,
       borderRadius: 8,
       marginBottom: 24,
-      marginLeft: 16
     },
     media: {
       height: 150,
     },
+    link: {
+        textDecoration: 'none',
+        color: 'inherit'
+    }
   });
 
 const Locations = () => {
@@ -40,24 +44,27 @@ const Locations = () => {
         <>
         <SearchBar label='Найти локацию'/>
         {data.map(locations => (
-        <Card className={classes.root}>
-            <CardActionArea>
-                <CardMedia
-                    className={classes.media}
-                    image={locations.imageName}
-                    title={locations.name}
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        {locations.name}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {/* криво */}
-                        {locations.type} • {locations.measurements}
-                    </Typography>
-                </CardContent>
-            </CardActionArea>
-        </Card>
+            // ListItem ? 
+            <Card className={classes.root}>
+                <CardActionArea>
+                <Link to={`/locationsInfo/${locations.id}`} key={locations.id} className={classes.link}>
+                    <CardMedia
+                        className={classes.media}
+                        image={locations.imageName}
+                        title={locations.name}
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {locations.name}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            {/* криво */}
+                            {locations.type} • {locations.measurements}
+                        </Typography>
+                    </CardContent>
+                </Link>
+                </CardActionArea>
+            </Card>
         ))}
         </>
      );

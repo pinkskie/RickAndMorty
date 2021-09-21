@@ -45,6 +45,9 @@ const theme = createTheme({
                 width: 72,
                 height: 72,
                 marginRight:16
+            },
+            square: {
+                borderRadius: 8
             }
 
         }

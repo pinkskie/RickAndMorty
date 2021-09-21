@@ -20,39 +20,42 @@ const useStyles = makeStyles((theme) => createStyles({
       fontSize:'10px'
     },
     MadiyarGay: {
-        borderRadius: 8,
-        width: theme.spacing(10),
-        height: theme.spacing(10),
+        // width: theme.spacing(10),
+        // height: theme.spacing(10),
         marginRight: 10
     } 
   }));
 
-const Episodes = ({data}) => {
+const Episodes = ({data, variant = 'square' , character = false}) => {
     const classes = useStyles()
 
 
     return (
         <>
         <List>
-        {data?.length && data.map(item => (
-          <ListItem to={`/episodesInfo/${item.id}`} component={Link} key={item.id} alignItems="center" button>
+        {data?.length ? data.map(item => (
+          <ListItem to={`/${character ? 'charactersInfo' : 'episodesInfo' }/${item.id}`} component={Link} key={item.id} alignItems="center" button>
             <ListItemAvatar>
-            <Avatar variant='square' alt={item.imageName} src={item.imageName} className={classes.MadiyarGay}/>
+            <Avatar variant={variant} alt={item.imageName} src={item.imageName} className={classes.MadiyarGay}/>
             </ListItemAvatar>
             <ListItemText
               primary={
                 <div className={classes.root}>
-                  <p className={classes.status}>Cерия {item.series}</p>
-                  {item.name} 
+                  {character ? (
+                    <p className={classes.status}>{['Живой', 'Мертый', 'Неизвестно'][item.status]}</p>
+                  ) : (
+                    <p className={classes.status}>Cерия {item.series}</p>
+                  )}
+                  {item.name || item.fullName}  
                 </div>
               }
-              secondary={dayjs(item.premiere).locale('ru').format('DD MMMM YYYY') }
+              secondary={character ? `${item.race}, ${['Мужской','Женский'][item.gender]}` : dayjs(item.premiere).locale('ru').format('DD MMMM YYYY')}
             />
             <ListItemSecondaryAction>
               <VectorIcon/>
             </ListItemSecondaryAction>
           </ListItem>
-        ))}
+        )) : null }
       </List>   
         </>
      );
