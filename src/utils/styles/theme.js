@@ -49,7 +49,11 @@ const theme = createTheme({
             square: {
                 borderRadius: 8
             }
-
+        },
+        MuiAppBar:  {
+            colorDefault: {
+                backgroundColor: palette.background.default
+            }
         }
     }
 })
