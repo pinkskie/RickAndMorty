@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     root: {
         width:'100%'
     },
-    margin: {
+    position: {
         position: 'absolute',
         top:32,
         left: 16,
@@ -41,8 +41,8 @@ const LocationsInfo = () => {
       }
     return (
         <>
-        <img src={info.imageName} alt='photo' className={classes.root}/>
-        <IconButton aria-label="delete" className={classes.margin} size="small" onClick={handleClick}>
+        <img src={info.imageName} alt='img' className={classes.root} />
+        <IconButton aria-label="delete" className={classes.position} size="small" onClick={handleClick}>
           <ArrowIcon />
         </IconButton>
         <div style={{padding: 16, borderRadius: 8}}>

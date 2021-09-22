@@ -19,11 +19,6 @@ const useStyles = makeStyles((theme) => createStyles({
       textTransform: "uppercase",
       fontSize:'10px'
     },
-    MadiyarGay: {
-        // width: theme.spacing(10),
-        // height: theme.spacing(10),
-        marginRight: 10
-    } 
   }));
 
 const Episodes = ({data, variant = 'square' , character = false}) => {
@@ -36,7 +31,7 @@ const Episodes = ({data, variant = 'square' , character = false}) => {
         {data?.length ? data.map(item => (
           <ListItem to={`/${character ? 'charactersInfo' : 'episodesInfo' }/${item.id}`} component={Link} key={item.id} alignItems="center" button>
             <ListItemAvatar>
-            <Avatar variant={variant} alt={item.imageName} src={item.imageName} className={classes.MadiyarGay}/>
+            <Avatar variant={variant} alt={item.imageName} src={item.imageName} style={{marginRight: 16}}/>
             </ListItemAvatar>
             <ListItemText
               primary={

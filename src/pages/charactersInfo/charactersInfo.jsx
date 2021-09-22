@@ -39,7 +39,7 @@ const CharactersInfo = () => {
     return (
         <>
             <div className={styles.wrapper}> 
-            <IconButton aria-label="delete" className={classes.margin} size="small" onClick={handleClick}>
+            <IconButton aria-label="delete" className={classes.position} size="small" onClick={handleClick}>
                 <ArrowIcon />
             </IconButton>
                 <div className={styles.wrapper__title}>
