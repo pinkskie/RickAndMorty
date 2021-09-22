@@ -9,6 +9,7 @@ import { getEpisodesInfo } from 'utils/api/episodes';
 
 import dayjs from 'dayjs'
 import 'dayjs/locale/ru'
+import Episodes from 'components/Episodes/Episodes';
 
 const useStyles = makeStyles({
     root: {
@@ -74,11 +75,12 @@ const EpisodesInfo= () => {
         </div>
         <Divider lightstyle={{marginTop: 32}}/>
         <Typography 
-                gutterBottom variant="h5" 
-                component="h3"
-                style={{marginTop:32}}>
-                Персонажи
-            </Typography>
+            variant="h5" 
+            component="h3"
+            style={{marginTop:12, padding:16}}>
+            Персонажи
+        </Typography>
+            <Episodes data={info?.characters} variant='circular' character/>
         </>
      );
 }
