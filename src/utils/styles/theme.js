@@ -38,6 +38,12 @@ const theme = createTheme({
                 color: 'white',
                 textTransform: 'inherit',
                 padding: '12px'
+            },
+            containedSecondary: {
+                backgroundColor:  'transparent',
+                boxShadow: 'none',
+                border: '1px solid #22A2BD',
+                borderRadius: 12
             }
         },
         MuiAvatar: {
@@ -53,6 +59,11 @@ const theme = createTheme({
         MuiAppBar:  {
             colorDefault: {
                 backgroundColor: palette.background.default
+            }
+        },
+        MuiDivider: {
+            light: {
+                border: '1px solid #152A3A'
             }
         }
     }

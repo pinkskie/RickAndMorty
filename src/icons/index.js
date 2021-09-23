@@ -7,3 +7,4 @@ export { default as PasswordIcon } from './PasswordIcon';
 export { default as ArrowIcon } from './ArrowIcon';
 export { default as VectorIcon } from './VectorIcon';
 export { default as PlayIcon } from './PlayIcon';
+export { default as PaletteIcon } from './PaletteIcon';
