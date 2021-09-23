@@ -1,12 +1,12 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { getAllLocations, getLocationsInfo } from "utils/api/locations";
-import { Typography, makeStyles, IconButton } from '@material-ui/core';
-// import { makeStyles } from '@material-ui/core/styles';
-import { getAllCharacters } from "utils/api/characters";
-import { Episodes } from "components";
+
+import { getLocationsInfo } from "utils/api/locations";
+
 import { ArrowIcon } from "icons";
+import { Episodes } from "components";
+
+import { Typography, makeStyles, IconButton } from '@material-ui/core';
 
 
 const useStyles = makeStyles({

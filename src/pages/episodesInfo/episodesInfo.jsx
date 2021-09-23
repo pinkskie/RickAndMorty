@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useParams, useHistory } from "react-router-dom";
 
@@ -7,9 +6,11 @@ import { Typography, makeStyles, IconButton, Divider } from '@material-ui/core';
 
 import { getEpisodesInfo } from 'utils/api/episodes';
 
+import Episodes from 'components/Episodes/Episodes';
+import { ArrowIcon, PlayIcon } from 'icons';
+
 import dayjs from 'dayjs'
 import 'dayjs/locale/ru'
-import Episodes from 'components/Episodes/Episodes';
 
 const useStyles = makeStyles({
     root: {
@@ -48,7 +49,11 @@ const EpisodesInfo= () => {
     }
     return (
         <>
-        <img src={info?.imageName} className={classes.root}/>
+        {/* <PlayIcon/> */}
+        <img src={info?.imageName} alt={info.imageName} className={classes.root}/>
+        <IconButton aria-label="delete" className={classes.position} size="small" onClick={handleClick}>
+          <ArrowIcon />
+        </IconButton>
         <div style={{padding: 16, borderRadius: 8}}>
             <Typography gutterBottom variant="h5" component="h2" style={{textAlign: 'center'}}>
                 {info?.name}

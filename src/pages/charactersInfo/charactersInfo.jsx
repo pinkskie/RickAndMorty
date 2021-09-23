@@ -1,14 +1,13 @@
 import styles from  './charactersInfo.module.css';
+import { useEffect, useState } from 'react';
 import { Link, useHistory, useParams } from "react-router-dom";
 
 import { Avatar, Typography, IconButton } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 
 import { ArrowIcon } from "icons";
-import { useEffect } from 'react';
 
 import { getCharaterInfo } from 'utils/api/characters';
-import { useState } from 'react';
 
 import { Episodes } from 'components';
 

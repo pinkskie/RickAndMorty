@@ -1,14 +1,8 @@
+import { useState, useEffect } from 'react';
+import { Episodes as List, SearchBar} from 'components';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-
-import { Episodes as List, SearchBar} from 'components';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { Tabs, Tab, Typography, Box } from '@material-ui/core';
 import { getAllEpisodes } from 'utils/api/episodes';
 
 const useStyles = makeStyles((theme) => ({
