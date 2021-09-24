@@ -27,7 +27,7 @@ const EpisodesInfo= () => {
       <GoBack />
       <Grid container style={{ padding: 16 }}>
         <Grid item xs={12} container alignItems="center" direction="column">
-          <Typography variant="h4">{info?.name}</Typography>
+          <Typography variant="h4" align="center">{info?.name}</Typography>
           <Status status={info?.series} isCharacter={false} />
         </Grid>
         <Grid item xs={12} style={{ marginBottom: 32, marginTop: 32 }}>
