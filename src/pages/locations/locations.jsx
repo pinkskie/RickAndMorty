@@ -49,7 +49,6 @@ const Locations = () => {
                 {locations.name}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                {/* криво */}
                 {locations.type} • {locations.measurements}
               </Typography>
             </CardContent>
