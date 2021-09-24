@@ -1,10 +1,10 @@
+export { default as ArrowIcon } from './ArrowIcon';
 export { default as CharactersIcon } from './CharactersIcon';
 export { default as EpisodesIcon } from './EpisodesIcon';
 export { default as LocationsIcon } from './LocationsIcon';
-export { default as SettingsIcon } from './SettingsIcon';
 export { default as LoginIcon } from './LoginIcon';
-export { default as PasswordIcon } from './PasswordIcon';
-export { default as ArrowIcon } from './ArrowIcon';
-export { default as VectorIcon } from './VectorIcon';
-export { default as PlayIcon } from './PlayIcon';
 export { default as PaletteIcon } from './PaletteIcon';
+export { default as PasswordIcon } from './PasswordIcon';
+export { default as PlayIcon } from './PlayIcon';
+export { default as SettingsIcon } from './SettingsIcon';
+export { default as VectorIcon } from './VectorIcon';

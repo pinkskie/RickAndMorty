@@ -1,8 +1,8 @@
 
 const EditProfile = () => {
-    return (
-        <></>
-     );
+  return (
+    <></>
+  );
 }
 
 export default EditProfile;
