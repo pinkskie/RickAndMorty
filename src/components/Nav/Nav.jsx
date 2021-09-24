@@ -23,7 +23,7 @@ const Nav = () => {
     <BottomNavigation 
       value={tab}
       onChange={handleChangeTab}
-      shwoLabels
+      showLabels
     >
       {links.map(({ value, label, icon: Icon }) => (
         <Tab key={value} value={value} label={label} icon={<Icon selected={tab === value}/>}/>

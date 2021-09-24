@@ -1,29 +1,11 @@
 import { useState,useEffect } from 'react';
-import { Link } from "react-router-dom";
 
-import { Avatar, List, ListItem, ListItemAvatar, ListItemText } from "@material-ui/core";
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-
-import { SearchBar } from "components"
+import { ListView, SearchBar } from "components"
 import { getAllCharacters, getCharactersByFilter } from 'utils/api/characters';
-
-const useStyles = makeStyles((theme) => createStyles({
-  root: {
-    display: "flex",
-    flexDirection: "column"
-  },
-  status: {
-    margin: 0,
-    textTransform: "uppercase",
-    fontSize:'10px'
-  }
-}));
 
 const Characters = () => {
   const [inputText, setInputText] = useState('')
   const [data,setData] = useState([]);
-
-  const classes = useStyles();
 
   // получить список всех персонажей при первом рендере
   useEffect(() => {
@@ -62,25 +44,7 @@ const Characters = () => {
         value={inputText}
         onChange={handleChange}
       />
-      
-      <List>
-        {data.map(character => (
-          <ListItem to={`/charactersInfo/${character.id}`} component={Link} key={character.id} alignItems="center" button>
-            <ListItemAvatar>
-              <Avatar alt={character.fullName} src={character.imageName} />
-            </ListItemAvatar>
-            <ListItemText
-              primary={
-                <div className={classes.root}>
-                  <p className={classes.status}>{['Живой', 'Мертый', 'Неизвестно'][character.status]}</p>
-                  {character.fullName}
-                </div>
-              }
-              secondary={`${character.race}, ${['Мужской','Женский'][character.gender]}`}
-            />
-          </ListItem>
-        ))}
-      </List>
+      <ListView data={data} character hideAction />
     </>
   );
 }

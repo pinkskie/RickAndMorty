@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Avatar, List, ListItem, ListItemAvatar, ListItemText, ListItemSecondaryAction } from "@material-ui/core";
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { Status } from "components";
 import { VectorIcon } from "icons";
 
 import dayjs from 'dayjs'
@@ -11,50 +12,59 @@ const useStyles = makeStyles((theme) => createStyles({
     display: "flex",
     flexDirection: "column",
   },
-  status: {
-    margin: 0,
-    textTransform: "uppercase",
-    fontSize:'10px'
-  },
   avatar: {
     marginRight: 16
   }
 }));
 
-const Episodes = ({ data, variant = 'square', character = false }) => {
+export const ListViewItem = ({ to, label, status, isCharacter, secondary, variant, img, hideAction }) => {
   const classes = useStyles();
+  const history = useHistory();
 
   return (
-    <List>
-      {data?.length ? data.map(item => (
-        <ListItem
-          key={item.id}
-          to={`/${character ? 'charactersInfo' : 'episodesInfo' }/${item.id}`}
-          component={Link}
-          alignItems="center"
-          button
-        >
-          <ListItemAvatar>
-            <Avatar variant={variant} alt={item?.imageName} src={item?.imageName} className={classes.avatar} />
-          </ListItemAvatar>
-          <ListItemText
-            primary={
-              <div className={classes.root}>
-                <p className={classes.status}>
-                  {character ? ['Живой', 'Мертый', 'Неизвестно'][item.status] : `Cерия ${item.series}`}
-                </p>
-                {item.name || item.fullName}  
-              </div>
-            }
-            secondary={character ? `${item.race}, ${['Мужской','Женский'][item.gender]}` : dayjs(item.premiere).locale('ru').format('DD MMMM YYYY')}
-          />
-          <ListItemSecondaryAction>
-            <VectorIcon/>
-          </ListItemSecondaryAction>
-        </ListItem>
-      )) : null}
-    </List>
-  );
+    <ListItem onClick={() => history.push(to)} alignItems="center" button>
+      <ListItemAvatar>
+        <Avatar
+          variant={variant}
+          src={img}
+          alt={label}
+          className={classes.avatar}
+        />
+      </ListItemAvatar>
+      <ListItemText
+        primary={
+          <div className={classes.root}>
+            <Status status={status} isCharacter={isCharacter} />
+            {label}  
+          </div>
+        }
+        secondary={secondary}
+      />
+      {!hideAction && (
+        <ListItemSecondaryAction>
+          <VectorIcon/>
+        </ListItemSecondaryAction>
+      )}
+    </ListItem>
+  )
 }
 
-export default Episodes;
+const ListView = ({ data, character = false, hideAction = false }) => (
+  <List>
+    {data?.length ? data.map(item => (
+      <ListViewItem
+        key={item.id}
+        to={`/${character ? 'characters' : 'episodes' }/${item.id}`}
+        label={item.name || item.fullName}
+        status={character ? item.status : item.series}
+        isCharacter={character}
+        secondary={character ? `${item.race}, ${['Мужской','Женский'][item.gender]}` : dayjs(item.premiere).locale('ru').format('DD MMMM YYYY')}
+        variant={character ? 'circular' : 'square'}
+        img={item?.imageName}
+        hideAction={hideAction}
+      />
+    )) : null}
+  </List>
+);
+
+export default ListView;
