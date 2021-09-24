@@ -40,6 +40,7 @@ const Locations = () => {
         <Card className={classes.root} key={locations.id}>
           <CardActionArea onClick={() => history.push(`/locations/${locations.id}`)}>
             <CardMedia
+              component="img"
               className={classes.media}
               image={locations.imageName}
               title={locations.name}
