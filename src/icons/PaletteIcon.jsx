@@ -1,4 +1,4 @@
-const PaletteIcon = () => {
+const PaletteIcon = () => (
     <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path 
             d="M17.9984 9.5625C17.7704 9.5625 17.5859 9.747 17.5889 9.975C17.5889 10.203 17.7734 10.3875 18.0014 10.3875C18.2294 10.3875 18.4139 10.203 18.4139 9.975C18.4109 9.747 18.2279 9.5625 17.9984 9.5625" 
@@ -38,6 +38,6 @@ const PaletteIcon = () => {
             strokeLinejoin="round"/>
     </svg>
 
-}
+)
 
 export default PaletteIcon;

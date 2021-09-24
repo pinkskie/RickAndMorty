@@ -1,4 +1,4 @@
-const PlayIcon = () => {
+const PlayIcon = () => (
     <svg width="132" height="132" viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path 
             d="M115.5 66C115.5 93.3405 93.3405 115.5 66 115.5C38.6595 115.5 16.5 93.3405 16.5 66C16.5 38.6595 38.6595 16.5 66 16.5C93.3405 16.5 115.5 38.6595 115.5 66Z" 
@@ -9,5 +9,5 @@ const PlayIcon = () => {
             fill="white"
         />
     </svg>
-}
+)
 export default PlayIcon;

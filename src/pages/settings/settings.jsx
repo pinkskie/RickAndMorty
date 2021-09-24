@@ -61,16 +61,16 @@ const useStyles = makeStyles((theme) => ({
             <List>
                 <ListItem className={classes.root}>
                     <ListItemAvatar >
+                        <PaletteIcon/>
+                    </ListItemAvatar>
+                    <ListItemText   
+                        primary={'Темная тема'}
+                        secondary={'Включена'}
+                    />
+                    <ListItemSecondaryAction>
                         <VectorIcon/>
-                        </ListItemAvatar>
-                            <ListItemText   
-                                primary={'Темная тема'}
-                                secondary={'Включена'}
-                            />
+                    </ListItemSecondaryAction>
                 </ListItem>
-                <ListItemSecondaryAction>
-                    <VectorIcon/>
-                </ListItemSecondaryAction>
             </List>
             <Divider light style={{marginTop: 32, marginBottom: 32}}/>
             <span className={classes.span}> О приложении</span>

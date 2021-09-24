@@ -50,7 +50,7 @@ const EpisodesInfo= () => {
     return (
         <>
         {/* <PlayIcon/> */}
-        <img src={info?.imageName} alt={info.imageName} className={classes.root}/>
+        <img src={info?.imageName} alt={info?.name} className={classes.root}/>
         <IconButton aria-label="delete" className={classes.position} size="small" onClick={handleClick}>
           <ArrowIcon />
         </IconButton>
