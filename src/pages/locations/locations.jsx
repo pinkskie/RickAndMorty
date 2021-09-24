@@ -38,7 +38,7 @@ const Locations = () => {
       <SearchBar label='Найти локацию'/>
       {data.map(locations => (
         <Card className={classes.root} key={locations.id}>
-          <CardActionArea onClick={() => history.push(`/locationsInfo/${locations.id}`)}>
+          <CardActionArea onClick={() => history.push(`/locations/${locations.id}`)}>
             <CardMedia
               className={classes.media}
               image={locations.imageName}

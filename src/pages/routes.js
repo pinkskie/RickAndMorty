@@ -4,15 +4,15 @@ import { Characters, CharactersInfo, Episodes,  EpisodesInfo, Locations, Locatio
 const Routes = () => {
   return (
     <Switch>
+      <Route path='/characters/:id' component={CharactersInfo}/>
       <Route exact path='/' component={Characters}/>
+      <Route path='/locations/:id' component={LocationsInfo}/>
       <Route path='/locations' component={Locations}/>
-      <Route path='/locationsInfo/:id' component={LocationsInfo}/>
+      <Route path='/episodes/:id' component={EpisodesInfo}/>
       <Route path='/episodes' component={Episodes}/>
-      <Route path='/episodesInfo/:id' component={EpisodesInfo}/>
       <Route path='/settings' component={Settings}/>
       <Route path='/login' component={Login}/>
       <Route path='/register' component={Register}/>
-      <Route path='/charactersInfo/:id' component={CharactersInfo}/>
     </Switch>
   );
 }

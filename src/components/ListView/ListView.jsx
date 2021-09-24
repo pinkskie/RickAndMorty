@@ -29,7 +29,7 @@ const Episodes = ({ data, variant = 'square', character = false }) => {
       {data?.length ? data.map(item => (
         <ListItem
           key={item.id}
-          to={`/${character ? 'charactersInfo' : 'episodesInfo' }/${item.id}`}
+          to={`/${character ? 'characters' : 'episodes' }/${item.id}`}
           component={Link}
           alignItems="center"
           button
