@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Tabs, Tab } from '@material-ui/core';
+import { Tabs, Tab, Backdrop, CircularProgress } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ListView, SearchBar} from 'components';
 
@@ -19,6 +19,7 @@ const Episodes = () => {
   const [value, setValue] = useState(1);
   const [data, setData] = useState();
   const classes = useStyles();
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (_, newValue) => {
     setValue(newValue);
@@ -26,9 +27,16 @@ const Episodes = () => {
 
   useEffect(() => {
     const fetchEpisodesData =  async () => {
-      const info = await getAllEpisodes(value)
-      if (info?.data.length) {
-        setData(info.data)
+      try {
+        setLoading(true)
+        const info = await getAllEpisodes(value)
+        if (info?.data.length) {
+          setData(info.data)
+        }
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setLoading(false)
       }
     }
     fetchEpisodesData()
@@ -49,6 +57,9 @@ const Episodes = () => {
           {[1,2,3,4,5].map(i => <Tab key={i} value={i} label={`Сезон ${i}`} />)}
         </Tabs>
         <ListView data={data} />
+        <Backdrop open={loading}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
       </div>
     </>
   );

@@ -1,18 +1,28 @@
 import { useState,useEffect } from 'react';
 
+import { Backdrop, CircularProgress } from '@material-ui/core';
 import { ListView, SearchBar } from "components"
+
 import { getAllCharacters, getCharactersByFilter } from 'utils/api/characters';
 
 const Characters = () => {
   const [inputText, setInputText] = useState('')
   const [data,setData] = useState([]);
+  const [loading, setLoading] = useState(false)
 
   // получить список всех персонажей при первом рендере
   useEffect(() => {
     const fetchCharacters = async () => {
-      const characters = await getAllCharacters(); // асинхронные запросы когда  апишки?
-      if(characters?.data?.length) {
-        setData(characters.data) 
+      try {
+        setLoading(true)
+        const characters = await getAllCharacters(); // асинхронные запросы когда  апишки?
+        if(characters?.data?.length) {
+          setData(characters.data) 
+        }
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setLoading(false)
       }
     }
      // получить всех персонажей если поиск пустой
@@ -32,6 +42,7 @@ const Characters = () => {
         Status: 0
       });
       setData(data?.data);
+
     }
     // поиск по имени если введены минимум 3 буквы
     inputText.length >= 3 && fetchCharacters();
@@ -45,6 +56,9 @@ const Characters = () => {
         onChange={handleChange}
       />
       <ListView data={data} character hideAction />
+      <Backdrop open={loading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </>
   );
 }
