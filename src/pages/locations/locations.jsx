@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
+import { Backdrop, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { SearchBar } from 'components';
 
@@ -20,16 +20,24 @@ const useStyles = makeStyles({
 
 const Locations = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const classes = useStyles();
   const history = useHistory();
 
   useEffect(() => {
     const fetchLocations = async () => {
-      const locations = await getAllLocations();
-      if (locations?.data?.length) {
-        setData(locations.data);
+      try {
+        setLoading(true);
+        const locations = await getAllLocations();
+        if (locations?.data?.length) {
+          setData(locations.data);
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
       }
-    } 
+    };
     fetchLocations();
   }, []);
       
@@ -56,6 +64,9 @@ const Locations = () => {
           </CardActionArea>
         </Card>
       ))}
+      <Backdrop open={loading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </>
   );
 }
