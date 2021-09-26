@@ -1,6 +1,8 @@
 export { default as ArrowIcon } from './ArrowIcon';
 export { default as CharactersIcon } from './CharactersIcon';
 export { default as EpisodesIcon } from './EpisodesIcon';
+export { default as GridIcon } from './GridIcon';
+export { default as ListIcon } from './ListIcon';
 export { default as LocationsIcon } from './LocationsIcon';
 export { default as LoginIcon } from './LoginIcon';
 export { default as PaletteIcon } from './PaletteIcon';

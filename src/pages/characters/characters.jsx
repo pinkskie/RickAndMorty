@@ -1,14 +1,23 @@
 import { useState,useEffect } from 'react';
 
 import { Backdrop, CircularProgress } from '@material-ui/core';
-import { ListView, SearchBar } from "components"
+import { ListView, SearchBar } from "components";
+
+import ChangeView from './ChangeView';
+import GridView from './GridView';
 
 import { getAllCharacters, getCharactersByFilter } from 'utils/api/characters';
 
 const Characters = () => {
   const [inputText, setInputText] = useState('')
   const [data,setData] = useState([]);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [view, setView] = useState('list');
+
+  // изменить вид списка
+  const handleChangeView = () => {
+    setView(view === 'list' ? 'grid' : 'list');
+  }
 
   // получить список всех персонажей при первом рендере
   useEffect(() => {
@@ -55,7 +64,9 @@ const Characters = () => {
         value={inputText}
         onChange={handleChange}
       />
-      <ListView data={data} character hideAction />
+      <ChangeView view={view} onChange={handleChangeView} count={data?.length} />
+      {view === 'list' && <ListView data={data} character hideAction />}
+      {view === 'grid' && <GridView data={data} />}
       <Backdrop open={loading}>
         <CircularProgress color="inherit" />
       </Backdrop>
