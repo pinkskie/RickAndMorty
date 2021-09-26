@@ -1,7 +1,10 @@
-import { Avatar, Grid, Typography } from "@material-ui/core";
+import { Avatar, Grid, Typography, ButtonBase } from "@material-ui/core";
 import { Status } from "components";
+import { useHistory } from "react-router-dom";
 
 const GridView = ({ data }) => {
+  const history = useHistory()
+
   return (
     <Grid container>
       {data?.length ? data?.map(item => (
@@ -13,7 +16,9 @@ const GridView = ({ data }) => {
           alignItems="center"
           justifyContent="center"
           direction="column"
+          component={ButtonBase}
           style={{ padding: 16 }}
+          onClick={() => history.push(`/characters/${item?.id}`)}
         >
           <Avatar src={item?.imageName} style={{ width: 120, height: 120, marginBottom: 16 }} />
           <Status status={item?.status} />
