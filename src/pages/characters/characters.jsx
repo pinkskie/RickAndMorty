@@ -13,20 +13,15 @@ import { charactersLoading, getCharacters } from 'utils/store/actions/characters
 const Characters = () => {
   const [inputText, setInputText] = useState('')
   const [view, setView] = useState('list');
-  const dispatch = useDispatch();
-  const { list , loading} = useSelector(state => state.characters);
 
-  const setLoading = () => {
-    dispatch(charactersLoading())
-  }
-  const setData = (data) => {
-    dispatch(getCharacters(data))
-  }
+  const { list , loading} = useSelector(state => state.characters);
+  const dispatch = useDispatch();
+
+  const setLoading = () => dispatch(charactersLoading());
+  const setData = (data) => dispatch(getCharacters(data));
 
   // изменить вид списка
-  const handleChangeView = () => {
-    setView(view === 'list' ? 'grid' : 'list');
-  }
+  const handleChangeView = () => setView(view === 'list' ? 'grid' : 'list');
 
   // получить список всех персонажей при первом рендере
   useEffect(() => {
