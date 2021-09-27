@@ -12,9 +12,9 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline/>
-        <div  style={{height: '100vh'}}>
+        <div className="wrapper">
           <Router>
-            <div style={{ height: 'calc(100vh - 56px', overflow: 'scroll'}}>
+            <div className="content">
               <Routes/>
             </div>
             <Nav/>
