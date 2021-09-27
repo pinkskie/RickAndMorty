@@ -1,4 +1,5 @@
 import { useState,useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Backdrop, CircularProgress } from '@material-ui/core';
 import { ListView, SearchBar } from "components";
@@ -7,12 +8,20 @@ import ChangeView from './ChangeView';
 import GridView from './GridView';
 
 import { getAllCharacters, getCharactersByFilter } from 'utils/api/characters';
+import { charactersLoading, getCharacters } from 'utils/store/actions/characters';
 
 const Characters = () => {
   const [inputText, setInputText] = useState('')
-  const [data,setData] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [view, setView] = useState('list');
+  const dispatch = useDispatch();
+  const { list , loading} = useSelector(state => state.characters);
+
+  const setLoading = () => {
+    dispatch(charactersLoading())
+  }
+  const setData = (data) => {
+    dispatch(getCharacters(data))
+  }
 
   // изменить вид списка
   const handleChangeView = () => {
@@ -23,16 +32,14 @@ const Characters = () => {
   useEffect(() => {
     const fetchCharacters = async () => {
       try {
-        setLoading(true)
-        const characters = await getAllCharacters(); // асинхронные запросы когда  апишки?
+        setLoading()
+        const characters = await getAllCharacters(); // асинхронные запросы когда апишки?
         if(characters?.data?.length) {
           setData(characters.data) 
         }
       } catch (error) {
         console.error(error)
-      } finally {
-        setLoading(false)
-      }
+      } 
     }
      // получить всех персонажей если поиск пустой
     !inputText.length && fetchCharacters();
@@ -64,9 +71,9 @@ const Characters = () => {
         value={inputText}
         onChange={handleChange}
       />
-      <ChangeView view={view} onChange={handleChangeView} count={data?.length} />
-      {view === 'list' && <ListView data={data} character hideAction />}
-      {view === 'grid' && <GridView data={data} />}
+      <ChangeView view={view} onChange={handleChangeView} count={list?.length} />
+      {view === 'list' && <ListView data={list} character hideAction />}
+      {view === 'grid' && <GridView data={list} />}
       <Backdrop open={loading}>
         <CircularProgress color="inherit" />
       </Backdrop>
