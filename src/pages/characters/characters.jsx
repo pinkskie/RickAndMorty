@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react';
+import { useState,useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Backdrop, CircularProgress } from '@material-ui/core';
@@ -17,8 +17,8 @@ const Characters = () => {
   const { list , loading} = useSelector(state => state.characters);
   const dispatch = useDispatch();
 
-  const setLoading = () => dispatch(charactersLoading());
-  const setData = (data) => dispatch(getCharacters(data));
+  const setLoading = useCallback(() => dispatch(charactersLoading()), [dispatch]);
+  const setData = useCallback((data) => dispatch(getCharacters(data)), [dispatch]);
 
   // изменить вид списка
   const handleChangeView = () => setView(view === 'list' ? 'grid' : 'list');
