@@ -38,7 +38,7 @@ const Characters = () => {
     }
      // получить всех персонажей если поиск пустой
     !inputText.length && fetchCharacters();
-  }, [inputText]);
+  }, [inputText, setData, setLoading]);
   
   const handleChange = e => { 
     setInputText(e.target.value);
@@ -57,7 +57,7 @@ const Characters = () => {
     }
     // поиск по имени если введены минимум 3 буквы
     inputText.length >= 3 && fetchCharacters();
-  }, [inputText]);
+  }, [inputText, setData]);
 
   return (
     <>
