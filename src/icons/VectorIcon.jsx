@@ -8,6 +8,6 @@ const Vector = () => (
       strokeLinejoin="round"
     />   
   </svg>
-)
+);
 
 export default Vector;

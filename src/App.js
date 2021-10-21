@@ -1,11 +1,11 @@
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
 
-import { CssBaseline, ThemeProvider } from '@material-ui/core';
-import Nav from './components/Nav/Nav';
-import Routes from './pages/routes';
+import { CssBaseline, ThemeProvider } from "@material-ui/core";
+import Nav from "./components/Nav/Nav";
+import Routes from "./pages/routes";
 
-import { theme, store } from 'utils';
+import { theme, store } from "utils";
 
 function App() {
   return (

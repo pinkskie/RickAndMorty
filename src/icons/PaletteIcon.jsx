@@ -43,6 +43,6 @@ const PaletteIcon = () => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
 export default PaletteIcon;

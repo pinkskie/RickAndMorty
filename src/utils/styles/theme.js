@@ -1,16 +1,16 @@
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from "@material-ui/core/styles";
 
 const palette = {
-  type: 'dark',
+  type: "dark",
   primary: {
-    main: '#43D049'
+    main: "#43D049"
   },
   background: {
-    default: '#0B1E2D',
-    paper: '#152A3A'
+    default: "#0B1E2D",
+    paper: "#152A3A"
   },
   secondary: {
-    main: '#5B6975'
+    main: "#5B6975"
   }
 };
 
@@ -19,11 +19,11 @@ const theme = createTheme({
   overrides: {
     MuiOutlinedInput:  {
       root: {
-        borderRadius: '999rem',
+        borderRadius: "999rem",
         background: palette.background.paper
       },
       notchedOutline: {
-        borderColor: 'transparent',
+        borderColor: "transparent",
       }
     },
     MuiBottomNavigationAction: {
@@ -33,16 +33,16 @@ const theme = createTheme({
     },
     MuiButton: {
       containedPrimary: {
-        backgroundColor: '#22A2BD',
-        borderRadius: '12px',
-        color: 'white',
-        textTransform: 'inherit',
-        padding: '12px'
+        backgroundColor: "#22A2BD",
+        borderRadius: "12px",
+        color: "white",
+        textTransform: "inherit",
+        padding: "12px"
       },
       containedSecondary: {
-        backgroundColor:  'transparent',
-        boxShadow: 'none',
-        border: '1px solid #22A2BD',
+        backgroundColor:  "transparent",
+        boxShadow: "none",
+        border: "1px solid #22A2BD",
         borderRadius: 12
       }
     },
@@ -63,7 +63,7 @@ const theme = createTheme({
     },
     MuiDivider: {
       light: {
-        border: '1px solid #152A3A'
+        border: "1px solid #152A3A"
       }
     }
   }

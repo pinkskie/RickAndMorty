@@ -15,6 +15,6 @@ const EpisodesIcon = ({ selected = false }) => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
 export default EpisodesIcon;

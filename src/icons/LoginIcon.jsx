@@ -15,6 +15,6 @@ const LoginIcon = () => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
 export default LoginIcon;

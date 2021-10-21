@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { makeStyles, Typography } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   title: {
     padding: 16,
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    '& a': {
+    "& a": {
       textDecoration: "none",
     }
   }
@@ -23,7 +23,7 @@ const Title = ({ children, secondary, to }) => {
         <Typography variant="body2" color="secondary" component={Link} to={to}>{secondary}</Typography>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default Title;

@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import { Tabs, Tab, Backdrop, CircularProgress } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { ListView, SearchBar} from 'components';
+import { useState, useEffect } from "react";
+import { Tabs, Tab, Backdrop, CircularProgress } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { ListView, SearchBar} from "components";
 
-import { getAllEpisodes } from 'utils/api/episodes';
+import { getAllEpisodes } from "utils/api/episodes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    width: '100%',
+    width: "100%",
   },
   content: {
     backgroundColor: theme.palette.background.default
@@ -19,7 +19,7 @@ const Episodes = () => {
   const [value, setValue] = useState(1);
   const [data, setData] = useState();
   const classes = useStyles();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (_, newValue) => {
     setValue(newValue);
@@ -28,18 +28,18 @@ const Episodes = () => {
   useEffect(() => {
     const fetchEpisodesData =  async () => {
       try {
-        setLoading(true)
-        const info = await getAllEpisodes(value)
+        setLoading(true);
+        const info = await getAllEpisodes(value);
         if (info?.data.length) {
-          setData(info.data)
+          setData(info.data);
         }
       } catch (error) {
-        console.error(error)
+        console.error(error);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
-    fetchEpisodesData()
+    };
+    fetchEpisodesData();
   },[value]);
 
   return (
@@ -63,6 +63,6 @@ const Episodes = () => {
       </div>
     </>
   );
-}
+};
 
 export default Episodes;

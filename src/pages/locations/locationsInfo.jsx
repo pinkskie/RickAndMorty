@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { Typography, Divider, Grid } from '@material-ui/core';
+import { Typography, Divider, Grid } from "@material-ui/core";
 import { ListView, Title, GoBack } from "components";
 
 import { getLocationsInfo } from "utils/api/locations";
@@ -13,8 +13,8 @@ const LocationsInfo = () => {
   useEffect(() => {
     const fetchLocationsInfo = async () => {
       const info = await getLocationsInfo(id);
-      setInfo(info.data)
-    } 
+      setInfo(info.data);
+    }; 
     fetchLocationsInfo();
   }, [id]);
 
@@ -38,6 +38,6 @@ const LocationsInfo = () => {
       <ListView data={info?.characters} character />
     </>
   );
-}
+};
 
 export default LocationsInfo;

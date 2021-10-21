@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { Typography, Divider, Grid, Avatar, makeStyles } from "@material-ui/core";
-import { ListView, Title, GoBack, Status } from 'components';
+import { ListView, Title, GoBack, Status } from "components";
 
-import { getCharaterInfo } from 'utils/api/characters';
+import { getCharaterInfo } from "utils/api/characters";
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -24,9 +24,9 @@ const CharactersInfo = () => {
   useEffect(() => {
     const fetchChacterInfo = async () => {
       const info = await getCharaterInfo(id);
-      setInfo(info.data)
-    }
-    fetchChacterInfo()
+      setInfo(info.data);
+    };
+    fetchChacterInfo();
   }, [id]);
 
   return (
@@ -45,7 +45,7 @@ const CharactersInfo = () => {
         </Grid>
         <Grid item xs={6}>
           <Typography variant="caption" color="secondary">Пол</Typography>
-          <Typography variant="body2">{['Мужской', 'Женский'][info?.gender]}</Typography>
+          <Typography variant="body2">{["Мужской", "Женский"][info?.gender]}</Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography variant="caption" color="secondary">Раса</Typography>
@@ -65,6 +65,6 @@ const CharactersInfo = () => {
       <ListView data={info?.episodes} />
     </>
   );
-}
+};
 
 export default CharactersInfo;

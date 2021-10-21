@@ -1,12 +1,12 @@
 import { InputAdornment, TextField } from "@material-ui/core";
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(createStyles({
   label: {
-    margin: '8px 0'
+    margin: "8px 0"
   },
   input: {
-    '& .MuiInputBase-root': {
+    "& .MuiInputBase-root": {
       borderRadius: 12
     }
   }
@@ -35,6 +35,6 @@ const MyInput = ({ label, icon, value, onChange, placeholder }) => {
       />
     </>
   );
-}
+};
 
 export default MyInput;

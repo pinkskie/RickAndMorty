@@ -4,6 +4,6 @@ const ArrowIcon = () => (
     <path d="M9 1.5L1.5 9" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     <path d="M9 16.5L1.5 9" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
-)
+);
 
 export default ArrowIcon;

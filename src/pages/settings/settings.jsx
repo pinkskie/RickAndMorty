@@ -1,5 +1,5 @@
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 import { IconButton, ListItem, Button, Avatar, ListItemAvatar, ListItemText, Divider, List, ListItemSecondaryAction, Typography } from "@material-ui/core";
 import { ArrowIcon, PaletteIcon, VectorIcon } from "icons";
 import { useHistory } from "react-router-dom";
@@ -17,14 +17,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex"
   },
   span: {
-    color: '#5B6975',
+    color: "#5B6975",
     fontSize: 10,
-    textTransform: 'uppercase'
+    textTransform: "uppercase"
   }
 }));
 
 const Settings = () => {
-  const classes = useStyles()
+  const classes = useStyles();
   const history = useHistory();
   
   return (
@@ -37,8 +37,8 @@ const Settings = () => {
           <Avatar />
         </ListItemAvatar>
         <ListItemText   
-          primary={'Nysan Sultanbayev'}
-          secondary={'pinksky'}
+          primary={"Nysan Sultanbayev"}
+          secondary={"pinksky"}
         />
       </ListItem>
       <div className={classes.position}>
@@ -59,8 +59,8 @@ const Settings = () => {
               <PaletteIcon/>
             </ListItemAvatar>
             <ListItemText   
-              primary={'Темная тема'}
-              secondary={'Включена'}
+              primary={"Темная тема"}
+              secondary={"Включена"}
             />
             <ListItemSecondaryAction>
               <VectorIcon/>
@@ -80,6 +80,6 @@ const Settings = () => {
       </div>
     </>
   );
-}
+};
 
 export default Settings;

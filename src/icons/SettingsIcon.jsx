@@ -9,6 +9,6 @@ const SettingsIcon = ({ selected = false }) => (
       stroke={selected ? "#43D049" : "#5B6975"}
       strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
-)
+);
 
 export default SettingsIcon;

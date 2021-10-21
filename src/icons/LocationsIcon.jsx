@@ -13,6 +13,6 @@ const LocationsIcon = ({ selected = false }) => (
       strokeMiterlimit="10"
     />
   </svg>
-)
+);
 
 export default LocationsIcon;

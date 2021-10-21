@@ -1,18 +1,18 @@
-import { useState,useEffect, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState,useEffect, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { Backdrop, CircularProgress } from '@material-ui/core';
+import { Backdrop, CircularProgress } from "@material-ui/core";
 import { ListView, SearchBar } from "components";
 
-import ChangeView from './ChangeView';
-import GridView from './GridView';
+import ChangeView from "./ChangeView";
+import GridView from "./GridView";
 
-import { getAllCharacters, getCharactersByFilter } from 'utils/api/characters';
-import { charactersLoading, getCharacters } from 'utils/store/actions/characters';
+import { getAllCharacters, getCharactersByFilter } from "utils/api/characters";
+import { charactersLoading, getCharacters } from "utils/store/actions/characters";
 
 const Characters = () => {
-  const [inputText, setInputText] = useState('')
-  const [view, setView] = useState('list');
+  const [inputText, setInputText] = useState("");
+  const [view, setView] = useState("list");
 
   const { list , loading} = useSelector(state => state.characters);
   const dispatch = useDispatch();
@@ -21,30 +21,30 @@ const Characters = () => {
   const setData = useCallback((data) => dispatch(getCharacters(data)), [dispatch]);
 
   // изменить вид списка
-  const handleChangeView = () => setView(view === 'list' ? 'grid' : 'list');
+  const handleChangeView = () => setView(view === "list" ? "grid" : "list");
 
   // получить список всех персонажей при первом рендере
   useEffect(() => {
     const fetchCharacters = async () => {
       try {
-        setLoading()
+        setLoading();
         const characters = await getAllCharacters(); // асинхронные запросы когда апишки?
         if(characters?.data?.length) {
-          setData(characters.data) 
+          setData(characters.data); 
         }
       } catch (error) {
-        console.error(error)
+        console.error(error);
       } 
-    }
-     // получить всех персонажей если поиск пустой
+    };
+    // получить всех персонажей если поиск пустой
     !inputText.length && fetchCharacters();
   }, [inputText, setData, setLoading]);
   
   const handleChange = e => { 
     setInputText(e.target.value);
-  } 
+  }; 
 
-    // Поиск по имени
+  // Поиск по имени
   useEffect(() => {
     const fetchCharacters = async () => {
       const data = await getCharactersByFilter({
@@ -54,7 +54,7 @@ const Characters = () => {
       });
       setData(data?.data);
 
-    }
+    };
     // поиск по имени если введены минимум 3 буквы
     inputText.length >= 3 && fetchCharacters();
   }, [inputText, setData]);
@@ -67,13 +67,13 @@ const Characters = () => {
         onChange={handleChange}
       />
       <ChangeView view={view} onChange={handleChangeView} count={list?.length} />
-      {view === 'list' && <ListView data={list} character hideAction />}
-      {view === 'grid' && <GridView data={list} />}
+      {view === "list" && <ListView data={list} character hideAction />}
+      {view === "grid" && <GridView data={list} />}
       <Backdrop open={loading}>
         <CircularProgress color="inherit" />
       </Backdrop>
     </>
   );
-}
+};
 
 export default Characters;

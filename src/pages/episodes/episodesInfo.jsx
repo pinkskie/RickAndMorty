@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { Typography, Divider, Grid } from '@material-ui/core';
+import { Typography, Divider, Grid } from "@material-ui/core";
 import { ListView, Title, GoBack, Status } from "components";
 
-import { getEpisodesInfo } from 'utils/api/episodes';
+import { getEpisodesInfo } from "utils/api/episodes";
 
-import dayjs from 'dayjs'
-import 'dayjs/locale/ru'
+import dayjs from "dayjs";
+import "dayjs/locale/ru";
 
 const EpisodesInfo= () => {
   const { id } = useParams();
@@ -16,8 +16,8 @@ const EpisodesInfo= () => {
   useEffect(() => {
     const fetchEpisodesInfo = async () => {
       const info = await getEpisodesInfo(id);
-      setInfo(info.data)
-    }
+      setInfo(info.data);
+    };
     fetchEpisodesInfo();
   }, [id]);
 
@@ -35,7 +35,7 @@ const EpisodesInfo= () => {
         </Grid>
         <Grid item xs={6}>
           <Typography variant="caption" color="secondary">Премьера</Typography>
-          <Typography variant="body2">{dayjs(info?.premiere).locale('ru').format('DD MMMM YYYY')}</Typography>
+          <Typography variant="body2">{dayjs(info?.premiere).locale("ru").format("DD MMMM YYYY")}</Typography>
         </Grid>
       </Grid>
       <Divider />
@@ -43,6 +43,6 @@ const EpisodesInfo= () => {
       <ListView data={info?.characters} character />
     </>
   );
-}
+};
 
 export default EpisodesInfo;

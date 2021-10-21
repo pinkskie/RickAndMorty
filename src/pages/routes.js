@@ -15,6 +15,6 @@ const Routes = () => {
       <Route path='/register' component={Register}/>
     </Switch>
   );
-}
+};
 
 export default Routes;

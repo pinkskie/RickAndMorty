@@ -1,6 +1,6 @@
 import { InputAdornment, TextField, IconButton } from "@material-ui/core";
-import SearchIcon from '@material-ui/icons/Search';
-import FilterListIcon from '@material-ui/icons/FilterList';
+import SearchIcon from "@material-ui/icons/Search";
+import FilterListIcon from "@material-ui/icons/FilterList";
 
 const SearchBar = ({ value, onChange, label, hideFilter = false }) => {
   return (
@@ -28,6 +28,6 @@ const SearchBar = ({ value, onChange, label, hideFilter = false }) => {
       />
     </div>
   );
-}
+};
 
 export default SearchBar;

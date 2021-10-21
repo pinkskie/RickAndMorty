@@ -4,8 +4,9 @@ export const getLocations = data => {
   return {
     type: GET_LOCATIONS,
     payload: data
-  }
-}
+  };
+};
+
 export const locationLoading = () => {
-  return { type: LOCATIONS_LOADING }
-}
+  return { type: LOCATIONS_LOADING };
+};

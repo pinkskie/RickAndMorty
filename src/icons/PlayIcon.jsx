@@ -9,6 +9,6 @@ const PlayIcon = () => (
       fill="white"
     />
   </svg>
-)
+);
 
 export default PlayIcon;

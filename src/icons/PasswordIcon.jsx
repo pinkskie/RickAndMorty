@@ -43,6 +43,6 @@ const PasswordIcon = () => (
       strokeLinejoin="round"
     />
   </svg>
-)
+);
 
 export default PasswordIcon;
