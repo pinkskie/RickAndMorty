@@ -12,7 +12,7 @@ const useStyles = makeStyles(createStyles({
   }
 }));
 
-const MyInput = ({ label, icon, value, onChange, placeholder }) => {
+const MyInput = ({ label, icon, value, onChange, placeholder, ...rest }) => {
   const classes = useStyles();
 
   return (
@@ -32,6 +32,7 @@ const MyInput = ({ label, icon, value, onChange, placeholder }) => {
             </InputAdornment>
           )
         }}
+        {...rest}
       />
     </>
   );

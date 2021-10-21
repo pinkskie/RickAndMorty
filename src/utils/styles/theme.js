@@ -5,6 +5,9 @@ const palette = {
   primary: {
     main: "#43D049"
   },
+  default: {
+    main: "#22A2BD"
+  },
   background: {
     default: "#0B1E2D",
     paper: "#152A3A"
@@ -32,19 +35,32 @@ const theme = createTheme({
       }
     },
     MuiButton: {
-      containedPrimary: {
-        backgroundColor: "#22A2BD",
+      root: {
         borderRadius: "12px",
-        color: "white",
         textTransform: "inherit",
         padding: "12px"
       },
-      containedSecondary: {
-        backgroundColor:  "transparent",
-        boxShadow: "none",
-        border: "1px solid #22A2BD",
-        borderRadius: 12
-      }
+      containedPrimary:{
+        color: "white",
+        backgroundColor: palette.default.main,
+        "&:hover": {
+          backgroundColor: palette.default.main,
+          "@media (hover: none)": {
+            backgroundColor: palette.default.main,
+          },
+        }
+      },
+      outlinedPrimary: {
+        color: palette.default.main,
+        padding: "8px",
+        border: `1px solid ${palette.default.main}`,
+        "&:hover": {
+          border: `1px solid ${palette.default.main}`,
+          "@media (hover: none)": {
+            border: `1px solid ${palette.default.main}`,
+          },
+        }
+      },
     },
     MuiAvatar: {
       root: {

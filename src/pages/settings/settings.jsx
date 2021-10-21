@@ -43,8 +43,8 @@ const Settings = () => {
       </ListItem>
       <div className={classes.position}>
         <Button 
-          variant="contained" 
-          color="secondary"
+          variant="outlined" 
+          color="primary"
           fullWidth
           style={{marginTop:24}}
           type="button"
