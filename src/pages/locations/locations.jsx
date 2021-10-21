@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Backdrop, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Typography } from '@material-ui/core';
@@ -6,6 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { SearchBar } from 'components';
 
 import { getAllLocations } from 'utils/api/locations';
+import { useDispatch, useSelector } from 'react-redux';
+import { getLocations, locationLoading } from 'utils/store/actions/locations';
 
 const useStyles = makeStyles({
   root: {
@@ -19,15 +21,23 @@ const useStyles = makeStyles({
 });
 
 const Locations = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
+
   const classes = useStyles();
   const history = useHistory();
+  const dispatch = useDispatch();
+  const {list, loading} = useSelector(state => state.locations);
 
   useEffect(() => {
+    const setLoading = () => {
+      dispatch(locationLoading())
+    }
+  
+    const setData = (data) => {
+      dispatch(getLocations(data))
+    }
     const fetchLocations = async () => {
       try {
-        setLoading(true);
+        setLoading();
         const locations = await getAllLocations();
         if (locations?.data?.length) {
           setData(locations.data);
@@ -39,12 +49,12 @@ const Locations = () => {
       }
     };
     fetchLocations();
-  }, []);
+  }, [dispatch]);
       
   return (
     <>
       <SearchBar label='Найти локацию'/>
-      {data.map(locations => (
+      {list.map(locations => (
         <Card className={classes.root} key={locations.id}>
           <CardActionArea onClick={() => history.push(`/locations/${locations.id}`)}>
             <CardMedia
