@@ -21,7 +21,7 @@ const Login = () => {
     }
     // если все ок, то сохраняем юзера в локал сторедж и редиректим на главную
     if (res?.succeeded) {
-      localStorage.setItem("user", JSON.stringify({ userName, ...res.data}));
+      localStorage.setItem("user", JSON.stringify({ userName, ...res }));
       window.location.href = "/";
     }
   };
