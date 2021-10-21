@@ -17,6 +17,12 @@ const Login = () => {
     const res = await signIn({ userName, password });
     if (res?.StatusCode === 403) {
       setIsWrong(true);
+      return;
+    }
+    // если все ок, то сохраняем юзера в локал сторедж и редиректим на главную
+    if (res?.succeeded) {
+      localStorage.setItem("user", JSON.stringify({ userName, ...res.data}));
+      window.location.href = "/";
     }
   };
   
