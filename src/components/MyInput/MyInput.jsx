@@ -25,6 +25,9 @@ const MyInput = ({ label, icon, value, onChange, placeholder, ...rest }) => {
         placeholder={placeholder}
         variant="outlined"
         fullWidth
+        inputProps={{
+          autocomplete: "new-password",
+        }}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
