@@ -1,5 +1,4 @@
-import { EPISODES_LOADING, GET_EPISODES } from "../constants";
-
+import { EPISODES_LOADING, GET_EPISODES } from "./types.episodes";
 
 export const getEpisodes = data => {
   return {
@@ -9,5 +8,7 @@ export const getEpisodes = data => {
 };
 
 export const episodesLoading = () => {
-  return {type: EPISODES_LOADING};
+  return {
+    type: EPISODES_LOADING
+  };
 };

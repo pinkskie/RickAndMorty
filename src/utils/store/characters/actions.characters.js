@@ -1,4 +1,4 @@
-import { CHARACTERS_LOADING, GET_CHARACTERS } from "../constants";
+import { CHARACTERS_LOADING, GET_CHARACTERS } from "./types.characters";
 
 export const getCharacters = data => {
   return {

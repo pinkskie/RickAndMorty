@@ -5,7 +5,7 @@ import { Button, Dialog, DialogContent, DialogTitle, Typography } from "@materia
 import { MyInput } from "components";
 import { LoginIcon, PasswordIcon } from "icons";
 
-import { signIn } from "utils/api/login";
+import { signIn } from "utils/store/login";
 import LoginImage from "../../assets/login.png";
 
 const Login = () => {

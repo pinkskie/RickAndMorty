@@ -1,4 +1,4 @@
-import { EPISODES_LOADING, GET_EPISODES } from "../constants";
+import { EPISODES_LOADING, GET_EPISODES } from "./types.episodes";
 
 const initialState = {
   list: [],

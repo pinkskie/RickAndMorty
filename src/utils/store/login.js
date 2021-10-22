@@ -1,4 +1,4 @@
-import http from "./fetch";
+import http from "utils/fetch";
 
 export const signIn = body => {
   return http("/Account/Login", {

@@ -1,4 +1,4 @@
-import { LOCATIONS_LOADING, GET_LOCATIONS } from "../constants";
+import { LOCATIONS_LOADING, GET_LOCATIONS } from "./types.locations";
 
 const initialState = {
   list: [],

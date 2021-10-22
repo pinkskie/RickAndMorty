@@ -1,4 +1,4 @@
-import http, { makeParams } from "./fetch";
+import http, { makeParams } from "utils/fetch";
 
 export const getAllCharacters = (PageNumber = 1, PageSize = 200) => {
   return http("/Characters/GetAll" + makeParams({ PageNumber, PageSize }));

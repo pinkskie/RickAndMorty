@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Typography, Divider, Grid } from "@material-ui/core";
 import { ListView, Title, GoBack } from "components";
 
-import { getLocationsInfo } from "utils/api/locations";
+import { getLocationsInfo } from "utils/store/locations";
 
 const LocationsInfo = () => {
   const { id } = useParams();

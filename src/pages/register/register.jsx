@@ -5,7 +5,7 @@ import { Button } from "@material-ui/core";
 import { MyInput } from "components";
 import { LoginIcon, PasswordIcon, ArrowIcon } from "icons";
 
-import { signUp } from "utils/api/login";
+import { signUp } from "utils/store/login";
 import styles from  "./Register.module.css";
 
 const Register = () => {

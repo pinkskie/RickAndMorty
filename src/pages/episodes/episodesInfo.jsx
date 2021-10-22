@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Typography, Divider, Grid } from "@material-ui/core";
 import { ListView, Title, GoBack, Status } from "components";
 
-import { getEpisodesInfo } from "utils/api/episodes";
+import { getEpisodesInfo } from "utils/store/episodes";
 
 import dayjs from "dayjs";
 import "dayjs/locale/ru";

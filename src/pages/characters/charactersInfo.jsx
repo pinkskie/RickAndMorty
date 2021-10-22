@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Typography, Divider, Grid, Avatar, makeStyles } from "@material-ui/core";
 import { ListView, Title, GoBack, Status } from "components";
 
-import { getCharaterInfo } from "utils/api/characters";
+import { getCharaterInfo } from "utils/store/characters";
 
 const useStyles = makeStyles((theme) => ({
   avatar: {

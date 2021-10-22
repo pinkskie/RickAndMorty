@@ -7,8 +7,12 @@ import { ListView, SearchBar } from "components";
 import ChangeView from "./ChangeView";
 import GridView from "./GridView";
 
-import { getAllCharacters, getCharactersByFilter } from "utils/api/characters";
-import { charactersLoading, getCharacters } from "utils/store/actions/characters";
+import {
+  getAllCharacters,
+  getCharactersByFilter,
+  getCharacters,
+  charactersLoading
+} from "utils/store/characters";
 
 const Characters = () => {
   const [inputText, setInputText] = useState("");

@@ -1,4 +1,4 @@
-import { GET_LOCATIONS, LOCATIONS_LOADING } from "../constants";
+import { GET_LOCATIONS, LOCATIONS_LOADING } from "./types.locations";
 
 export const getLocations = data => {
   return {

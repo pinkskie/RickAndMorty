@@ -1,13 +1,12 @@
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { Backdrop, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { SearchBar } from "components";
 
-import { getAllLocations } from "utils/api/locations";
-import { useDispatch, useSelector } from "react-redux";
-import { getLocations, locationLoading } from "utils/store/actions/locations";
+import { getAllLocations, getLocations, locationLoading } from "utils/store/locations";
 
 const useStyles = makeStyles({
   root: {

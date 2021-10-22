@@ -1,11 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
-import { Tabs, Tab, Backdrop, CircularProgress } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { useDispatch, useSelector } from "react-redux";
+
+import { Tabs, Tab, Backdrop, CircularProgress, makeStyles } from "@material-ui/core";
 import { ListView, SearchBar} from "components";
 
-import { getAllEpisodes } from "utils/api/episodes";
-import { useDispatch, useSelector } from "react-redux";
-import { episodesLoading, getEpisodes } from "utils/store/actions/episodes";
+import { getAllEpisodes, episodesLoading, getEpisodes } from "utils/store/episodes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
