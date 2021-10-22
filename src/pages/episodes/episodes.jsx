@@ -19,26 +19,18 @@ const useStyles = makeStyles((theme) => ({
 
 const Episodes = () => {
   const [value, setValue] = useState(1);
-  // const [data, setData] = useState();
-  const classes = useStyles();
-  // const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
   const {list, loading} = useSelector(state => state.episodes);
-
-  const handleChange = (_, newValue) => {
-    setValue(newValue);
-  };
+  const dispatch = useDispatch();
+  const classes = useStyles();
 
   const setData = useCallback((data) => dispatch(getEpisodes(data)), [dispatch]);
   const setLoading = useCallback(() => dispatch(episodesLoading()), [dispatch]);
 
-
   useEffect(() => {
-    
     const fetchEpisodesData =  async () => {
       try {
         setLoading();
-        const info = await getAllEpisodes(value);
+        const info = await getAllEpisodes();
         if (info?.data.length) {
           setData(info.data);
         }
@@ -49,23 +41,23 @@ const Episodes = () => {
       }
     };
     fetchEpisodesData();
-  },[value, setData, setLoading ]);
+  }, [setData, setLoading ]);
 
   return (
     <>
-      <SearchBar label='Найти эпизод' hideFilter />
+      <SearchBar label="Найти эпизод" hideFilter />
       <div className={classes.root}>
         <Tabs
           value={value}
-          onChange={handleChange}
+          onChange={(_, newValue) => setValue(newValue)}
           indicatorColor="primary"
           textColor="primary"
           variant="scrollable"
           scrollButtons="auto"
         >
-          {[1,2,3,4,5].map(i => <Tab key={i} value={i} label={`Сезон ${i}`} />)}
+          {[1,2,3,4].map(i => <Tab key={i} value={i} label={`Сезон ${i}`} />)}
         </Tabs>
-        <ListView data={list} />
+        <ListView data={list.filter(item => item?.season == value).sort((a, b) => a.series - b.series)} />
         <Backdrop open={loading}>
           <CircularProgress color="inherit" />
         </Backdrop>
