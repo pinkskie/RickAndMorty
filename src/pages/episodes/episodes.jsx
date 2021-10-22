@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Tabs, Tab, Backdrop, CircularProgress } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { ListView, SearchBar} from "components";
 
 import { getAllEpisodes } from "utils/api/episodes";
+import { useDispatch, useSelector } from "react-redux";
+import { episodesLoading, getEpisodes } from "utils/store/actions/episodes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,18 +19,25 @@ const useStyles = makeStyles((theme) => ({
 
 const Episodes = () => {
   const [value, setValue] = useState(1);
-  const [data, setData] = useState();
+  // const [data, setData] = useState();
   const classes = useStyles();
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const {list, loading} = useSelector(state => state.episodes);
 
   const handleChange = (_, newValue) => {
     setValue(newValue);
   };
 
+  const setData = useCallback((data) => dispatch(getEpisodes(data)), [dispatch]);
+  const setLoading = useCallback(() => dispatch(episodesLoading()), [dispatch]);
+
+
   useEffect(() => {
+    
     const fetchEpisodesData =  async () => {
       try {
-        setLoading(true);
+        setLoading();
         const info = await getAllEpisodes(value);
         if (info?.data.length) {
           setData(info.data);
@@ -40,7 +49,7 @@ const Episodes = () => {
       }
     };
     fetchEpisodesData();
-  },[value]);
+  },[value, setData, setLoading ]);
 
   return (
     <>
@@ -56,7 +65,7 @@ const Episodes = () => {
         >
           {[1,2,3,4,5].map(i => <Tab key={i} value={i} label={`Сезон ${i}`} />)}
         </Tabs>
-        <ListView data={data} />
+        <ListView data={list} />
         <Backdrop open={loading}>
           <CircularProgress color="inherit" />
         </Backdrop>
