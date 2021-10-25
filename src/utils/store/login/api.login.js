@@ -1,4 +1,4 @@
-import http from "utils/fetch";
+import http, { makeParams } from "utils/fetch";
 
 export const signIn = body => {
   return http("/Account/Login", {
@@ -18,4 +18,8 @@ export const signUp = body => {
     },
     body
   });
+};
+
+export const getProfile = userName => {
+  return http("/Account/GetProfile" + makeParams(userName));
 };
