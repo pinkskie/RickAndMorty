@@ -7,7 +7,11 @@ const useUser = () => {
     localStorage.setItem(KEY_NAME, JSON.stringify({ ...data, succeeded: true }));
   };
 
-  return [user, setUser];
+  const signOut = () => {
+    localStorage.removeItem(KEY_NAME);
+  };
+
+  return [user, setUser, signOut];
 };
 
 export default useUser;
