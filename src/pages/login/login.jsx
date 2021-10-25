@@ -6,6 +6,8 @@ import { MyInput } from "components";
 import { LoginIcon, PasswordIcon } from "icons";
 
 import { signIn } from "utils/store/login";
+import { useUser } from "utils";
+
 import LoginImage from "../../assets/login.png";
 
 const Login = () => {
@@ -13,6 +15,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isWrong, setIsWrong] = useState(false);
   const history = useHistory();
+  const [user, setUser] = useUser();
+
+  if (user.succeeded) {
+    history.push("/");
+  }
 
   const handleSubmit = async () => {
     const res = await signIn({ userName, password });
@@ -22,7 +29,7 @@ const Login = () => {
     }
     // если все ок, то сохраняем юзера в локал сторедж и редиректим на главную
     if (res?.succeeded) {
-      localStorage.setItem("user", JSON.stringify({ userName, ...res }));
+      setUser({ userName, ...res });
       history.push("/");
     }
   };

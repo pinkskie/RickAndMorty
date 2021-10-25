@@ -6,6 +6,8 @@ import { MyInput } from "components";
 import { LoginIcon, PasswordIcon, ArrowIcon } from "icons";
 
 import { signUp } from "utils/store/login";
+import { useUser } from "utils";
+
 import styles from  "./Register.module.css";
 
 const Register = () => {
@@ -15,6 +17,11 @@ const Register = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+  const [user] = useUser();
+
+  if (user.succeeded) {
+    history.push("/");
+  }
 
   const handleSubmit = async () => {
     const res = await signUp({ firstName, lastName, patronymic, userName, password });
