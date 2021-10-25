@@ -1,8 +1,14 @@
-
-import { makeStyles } from "@material-ui/core/styles";
-import { IconButton, ListItem, Button, Avatar, ListItemAvatar, ListItemText, Divider, List, ListItemSecondaryAction, Typography } from "@material-ui/core";
-import { ArrowIcon, PaletteIcon, VectorIcon } from "icons";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+
+import { IconButton, ListItem, Button, Avatar, ListItemAvatar, ListItemText, Divider, List, ListItemSecondaryAction, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { ArrowIcon, PaletteIcon, VectorIcon } from "icons";
+
+import { useUser } from "utils";
+import { getProfile } from "utils/store/login/api.login";
+import { setProfile } from "utils/store/login/actions.login";
 
 const useStyles = makeStyles((theme) => ({
   large: {
@@ -24,8 +30,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Settings = () => {
+  const [isDark, setIsDark] = useState(true);
   const classes = useStyles();
   const history = useHistory();
+  const [user,, signOut] = useUser();
+  const { profile: data } = useSelector(state => state.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await getProfile(user.userName);
+        dispatch(setProfile(res.data));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    if (!data) {
+      fetchData();
+    }
+  }, [user, data]);
   
   return (
     <>
@@ -37,8 +61,8 @@ const Settings = () => {
           <Avatar />
         </ListItemAvatar>
         <ListItemText   
-          primary={"Nysan Sultanbayev"}
-          secondary={"pinksky"}
+          primary={data?.fullName}
+          secondary={user.userName}
         />
       </ListItem>
       <div className={classes.position}>
@@ -54,14 +78,23 @@ const Settings = () => {
         <Divider light style={{marginTop: 32, marginBottom: 32}} />
         <span className={classes.span}>Внешний Вид</span>
         <List>
-          <ListItem className={classes.root}>
+          <ListItem className={classes.root} button onClick={() => setIsDark(v => !v)}>
             <ListItemAvatar >
               <PaletteIcon/>
             </ListItemAvatar>
-            <ListItemText   
-              primary={"Темная тема"}
-              secondary={"Включена"}
+            <ListItemText
+              primary="Темная тема"
+              secondary={isDark ? "Включена" : "Выключена"}
             />
+            <ListItemSecondaryAction>
+              <VectorIcon/>
+            </ListItemSecondaryAction>
+          </ListItem>
+          <ListItem className={classes.root} button onClick={signOut}>
+            <ListItemAvatar >
+              <PaletteIcon/>
+            </ListItemAvatar>
+            <ListItemText primary="Выйти" />
             <ListItemSecondaryAction>
               <VectorIcon/>
             </ListItemSecondaryAction>

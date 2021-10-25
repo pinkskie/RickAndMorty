@@ -21,5 +21,5 @@ export const signUp = body => {
 };
 
 export const getProfile = userName => {
-  return http("/Account/GetProfile" + makeParams(userName));
+  return http("/Account/GetProfile" + makeParams({ userName }));
 };

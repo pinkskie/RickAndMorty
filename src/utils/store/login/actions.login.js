@@ -1,6 +1,6 @@
 import { SET_PROFILE } from "./types.login";
 
-export const setProfile = userName => ({
+export const setProfile = data => ({
   type: SET_PROFILE,
-  payload: userName
+  payload: data
 });
