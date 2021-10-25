@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { Button } from "@material-ui/core";
 import { MyInput } from "components";
@@ -14,9 +14,13 @@ const Register = () => {
   const [patronymic, setPatronymic] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
-  const handleSubmit = () => {
-    signUp({ firstName, lastName, patronymic, userName, password });
+  const handleSubmit = async () => {
+    const res = await signUp({ firstName, lastName, patronymic, userName, password });
+    if (res?.succeeded) {
+      history.push("/login");
+    }
   };
 
   return (
@@ -51,6 +55,7 @@ const Register = () => {
           icon={<LoginIcon/>}
         />
         <MyInput 
+          type='password'
           label='Пароль'
           placeholder='Пароль'
           value={password}

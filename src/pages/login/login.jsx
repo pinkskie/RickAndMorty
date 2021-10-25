@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { Button, Dialog, DialogContent, DialogTitle, Typography } from "@material-ui/core";
 import { MyInput } from "components";
@@ -12,6 +12,7 @@ const Login = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [isWrong, setIsWrong] = useState(false);
+  const history = useHistory();
 
   const handleSubmit = async () => {
     const res = await signIn({ userName, password });
@@ -22,7 +23,7 @@ const Login = () => {
     // если все ок, то сохраняем юзера в локал сторедж и редиректим на главную
     if (res?.succeeded) {
       localStorage.setItem("user", JSON.stringify({ userName, ...res }));
-      window.location.href = "/";
+      history.push("/");
     }
   };
   
