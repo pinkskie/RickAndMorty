@@ -30,6 +30,12 @@ const Login = () => {
     }
   };
   
+  const handleEnter = (e) => {
+    if ( e.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
   return (
     <>
       <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
@@ -42,6 +48,7 @@ const Login = () => {
           label="Логин"
           onChange={e => setUserName(e.target.value)}
           icon={<LoginIcon/>}
+          onKeyPress={handleEnter}
         />
         <MyInput
           placeholder="Пароль"
@@ -50,6 +57,7 @@ const Login = () => {
           onChange={e => setPassword(e.target.value)}
           icon={<PasswordIcon/>}
           type="password"
+          onKeyPress={handleEnter}
         />
         <Button 
           variant="contained" 
