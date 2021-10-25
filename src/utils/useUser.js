@@ -7,6 +7,10 @@ const useUser = () => {
     localStorage.setItem(KEY_NAME, JSON.stringify({ ...data, succeeded: true }));
   };
 
+  if (!user) {
+    return [{ succeeded: false }, setUser];
+  }
+
   return [user, setUser];
 };
 

@@ -1,10 +1,11 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { Characters, CharactersInfo, Episodes, EpisodesInfo, Locations, LocationsInfo, Settings, Login, Register } from "pages";
+import { useUser } from "utils";
 
 const Routes = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  console.log(user);
-  return (
+  const [user] = useUser();
+
+  return user.succeeded ? (
     <Switch>
       <Route exact path='/' component={Characters} />
       <Route path='/characters/:id' component={CharactersInfo} />
@@ -13,8 +14,17 @@ const Routes = () => {
       <Route path='/episodes/:id' component={EpisodesInfo} />
       <Route path='/episodes' component={Episodes} />
       <Route path='/settings' component={Settings} />
+      <Route>
+        <Redirect to='/' />
+      </Route>
+    </Switch>
+  ) : (
+    <Switch>
       <Route path='/login' component={Login} />
       <Route path='/register' component={Register} />
+      <Route>
+        <Redirect to='/login' />
+      </Route>
     </Switch>
   );
 };

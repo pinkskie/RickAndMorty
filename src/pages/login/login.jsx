@@ -15,11 +15,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isWrong, setIsWrong] = useState(false);
   const history = useHistory();
-  const [user, setUser] = useUser();
-
-  if (user.succeeded) {
-    history.push("/");
-  }
+  const [, setUser] = useUser();
 
   const handleSubmit = async () => {
     const res = await signIn({ userName, password });
