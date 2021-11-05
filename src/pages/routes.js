@@ -1,6 +1,7 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import { Characters, CharactersInfo, Episodes, EpisodesInfo, Locations, LocationsInfo, Settings, Login, Register } from "pages";
 import { useUser } from "utils";
+import EditProfile from "./settings/editProfile";
 
 const Routes = () => {
   const [user] = useUser();
@@ -14,6 +15,7 @@ const Routes = () => {
       <Route path='/episodes/:id' component={EpisodesInfo} />
       <Route path='/episodes' component={Episodes} />
       <Route path='/settings' component={Settings} />
+      <Route path='/edit' component={EditProfile} />
       <Route>
         <Redirect to='/' />
       </Route>

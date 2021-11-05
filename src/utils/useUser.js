@@ -11,6 +11,7 @@ const useUser = () => {
 
   const signOut = useCallback(() => {
     localStorage.removeItem(KEY_NAME);
+    localStorage.removeItem("profile");
     window.location.href = "/login";
   }, []);
 

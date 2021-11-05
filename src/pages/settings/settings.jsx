@@ -38,11 +38,16 @@ const Settings = () => {
   const { profile: data } = useSelector(state => state.user);
   const dispatch = useDispatch();
 
+  const handleClick = () => {
+    history.push("/edit");
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await getProfile(user.userName);
         dispatch(setProfile(res.data));
+        localStorage.setItem("profile", JSON.stringify(res.data));
       } catch (error) {
         console.error(error);
       }
@@ -73,6 +78,8 @@ const Settings = () => {
           fullWidth
           style={{marginTop:24}}
           type="button"
+          onClick={handleClick}
+
         >
           Редактировать
         </Button>
