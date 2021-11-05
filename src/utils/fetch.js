@@ -8,10 +8,7 @@ const http = async (url, options = { method: "GET" }) => {
     options = { ...options, body };
   }
   // запрос к api
-  const res = await fetch(`${baseUrl}${url}`, {
-    ...options,
-    method: options.method || "GET"
-  }); 
+  const res = await fetch(`${baseUrl}${url}`, options); 
   return await res.json();
 };
 

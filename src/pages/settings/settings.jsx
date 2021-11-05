@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { IconButton, ListItem, Button, Avatar, ListItemAvatar, ListItemText, Divider, List, ListItemSecondaryAction, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { ArrowIcon, PaletteIcon, VectorIcon } from "icons";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 import { useUser } from "utils";
 import { getProfile } from "utils/store/login/api.login";
@@ -91,8 +92,8 @@ const Settings = () => {
             </ListItemSecondaryAction>
           </ListItem>
           <ListItem className={classes.root} button onClick={signOut}>
-            <ListItemAvatar >
-              <PaletteIcon/>
+            <ListItemAvatar>
+              <ExitToAppIcon fontSize="large" />
             </ListItemAvatar>
             <ListItemText primary="Выйти" />
             <ListItemSecondaryAction>
@@ -103,7 +104,7 @@ const Settings = () => {
         <Divider light style={{marginTop: 32, marginBottom: 32}}/>
         <span className={classes.span}>О приложении</span>
         <Typography variant="body2" component="p" style={{marginTop: 24}}>
-          Зигерионцы помещают Джерри и Рика в симуляцию, чтобы узнать секрет изготовления концен-трирован- ной темной материи.
+          Зигерионцы помещают Джерри и Рика в симуляцию, чтобы узнать секрет изготовления концентрированной темной материи.
         </Typography>
         <Divider light style={{marginTop: 32, marginBottom: 32}}/>
         <span className={classes.span}> Версия приложения</span>
