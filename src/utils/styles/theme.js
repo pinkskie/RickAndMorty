@@ -1,21 +1,44 @@
 import { createTheme } from "@material-ui/core/styles";
 
-const palette = {
-  type: "dark",
-  primary: {
-    main: "#43D049"
-  },
-  default: {
-    main: "#22A2BD"
-  },
-  background: {
-    default: "#0B1E2D",
-    paper: "#152A3A"
-  },
-  secondary: {
-    main: "#5B6975"
+const getPalette = () => {
+  const light = localStorage.getItem("light");
+  if (light === "true") { 
+    return {
+      primary: {
+        main: "#43D049"
+      },
+      default: {
+        main: "#22A2BD"
+      },
+      background: {
+        default: "#F2F2F2",
+        paper: "#E5E5E5"
+      },
+      secondary: {
+        main: "#5B6975"
+      }
+    };
+  } else {
+    return {
+      type: "dark",
+      primary: {
+        main: "#43D049"
+      },
+      default: {
+        main: "#22A2BD"
+      },
+      background: {
+        default: "#0B1E2D",
+        paper: "#152A3A"
+      },
+      secondary: {
+        main: "#5B6975"
+      }
+    };
   }
 };
+
+const palette = getPalette();
 
 const theme = createTheme({
   palette,

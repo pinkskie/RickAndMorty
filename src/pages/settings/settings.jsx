@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Settings = () => {
-  const [isDark, setIsDark] = useState(true);
   const classes = useStyles();
   const history = useHistory();
   const [user,, signOut] = useUser();
@@ -40,6 +39,16 @@ const Settings = () => {
 
   const handleClick = () => {
     history.push("/edit");
+  };
+
+  const isLight = localStorage.getItem("light");
+
+  const setLight = () => {
+    if (isLight === "true" ) {
+      localStorage.setItem("light", "false" ); 
+    } else {
+      localStorage.setItem("light", "true");
+    }
   };
 
   useEffect(() => {
@@ -86,13 +95,13 @@ const Settings = () => {
         <Divider light style={{marginTop: 32, marginBottom: 32}} />
         <span className={classes.span}>Внешний Вид</span>
         <List>
-          <ListItem className={classes.root} button onClick={() => setIsDark(v => !v)}>
+          <ListItem className={classes.root} button onClick={setLight}>
             <ListItemAvatar >
               <PaletteIcon/>
             </ListItemAvatar>
             <ListItemText
               primary="Темная тема"
-              secondary={isDark ? "Включена" : "Выключена"}
+              secondary={isLight ? "Включена" : "Выключена"}
             />
             <ListItemSecondaryAction>
               <VectorIcon/>
