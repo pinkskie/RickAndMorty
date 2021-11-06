@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 
 import { CssBaseline, ThemeProvider } from "@material-ui/core";
 import Nav from "./components/Nav/Nav";
 import Routes from "./pages/routes";
 
-import { theme, store } from "utils";
+import { getTheme, store } from "utils";
 
 const Root = () => {
   const { pathname } = useLocation();
@@ -29,15 +29,23 @@ const Root = () => {
   );
 };
 
-const App = () => (
-  <Provider store={store}>
-    <ThemeProvider theme={theme}>
+const App = () => {
+  const isLight = useSelector(state => state.theme.isLight);
+
+  return (
+    <ThemeProvider theme={getTheme(isLight)}>
       <CssBaseline />
       <Router>
         <Root />
       </Router>
     </ThemeProvider>
+  );
+};
+
+const WithProvider= () => (
+  <Provider store={store}>
+    <App />
   </Provider>
 );
 
-export default App;
+export default WithProvider;

@@ -10,6 +10,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { useUser } from "utils";
 import { getProfile } from "utils/store/login/api.login";
 import { setProfile } from "utils/store/login/actions.login";
+import { toggleTheme } from "utils/store/theme.reducer";
 
 const useStyles = makeStyles((theme) => ({
   large: {
@@ -31,25 +32,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Settings = () => {
+  const [user,, signOut] = useUser();
+  const { isLight, label } = useSelector(state => state.theme);
+  const data = useSelector(state => state.user.profile);
+
+  const dispatch = useDispatch();
   const classes = useStyles();
   const history = useHistory();
-  const [user,, signOut] = useUser();
-  const { profile: data } = useSelector(state => state.user);
-  const dispatch = useDispatch();
-
-  const handleClick = () => {
-    history.push("/edit");
-  };
-
-  const isLight = localStorage.getItem("light");
-
-  const setLight = () => {
-    if (isLight === "true" ) {
-      localStorage.setItem("light", "false" ); 
-    } else {
-      localStorage.setItem("light", "true");
-    }
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -87,7 +76,7 @@ const Settings = () => {
           fullWidth
           style={{marginTop:24}}
           type="button"
-          onClick={handleClick}
+          onClick={() => history.push("/edit")}
 
         >
           Редактировать
@@ -95,13 +84,13 @@ const Settings = () => {
         <Divider light style={{marginTop: 32, marginBottom: 32}} />
         <span className={classes.span}>Внешний Вид</span>
         <List>
-          <ListItem className={classes.root} button onClick={setLight}>
+          <ListItem className={classes.root} button onClick={() => dispatch(toggleTheme)}>
             <ListItemAvatar >
-              <PaletteIcon/>
+              <PaletteIcon isLight={isLight} />
             </ListItemAvatar>
             <ListItemText
               primary="Темная тема"
-              secondary={isLight ? "Включена" : "Выключена"}
+              secondary={label}
             />
             <ListItemSecondaryAction>
               <VectorIcon/>
