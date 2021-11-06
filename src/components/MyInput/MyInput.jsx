@@ -26,7 +26,7 @@ const MyInput = ({ label, icon, value, onChange, placeholder, ...rest }) => {
         variant="outlined"
         fullWidth
         inputProps={{
-          autocomplete: "new-password",
+          autoComplete: "new-password",
         }}
         InputProps={{
           startAdornment: (
